@@ -4,10 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -35,93 +46,68 @@ public class MainActivity extends AppCompatActivity {
 
         //버튼이 클릭되면 여기 리스너로 옴
         btn.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
-            public void onClick(View view) {
-                new JSONTask().execute("http://192.168.25.16:3000/post");//AsyncTask 시작시킴
+            public void onClick(View v) {
+                request();
             }
         });
     }
 
-    public class JSONTask extends AsyncTask<String, String, String> {
+    public void request(){
+        //url 요청주소 넣는 editText를 받아 url만들기
+        String url = "http://192.168.200.106:3000/post";
 
-        @Override
-        protected String doInBackground(String... urls) {
-            try {
-                //JSONObject를 만들고 key value 형식으로 값을 저장해준다.
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.accumulate("user_id", "androidTest");
-                jsonObject.accumulate("name", "yun");
+        //JSON형식으로 데이터 통신을 진행합니다!
+        JSONObject testjson = new JSONObject();
+        try {
+            //입력해둔 edittext의 id와 pw값을 받아와 put해줍니다 : 데이터를 json형식으로 바꿔 넣어주었습니다.
+            testjson.put("user_id", "test");
+            testjson.put("name","yun");
+            String jsonString = testjson.toString(); //완성된 json 포맷
 
-                HttpURLConnection con = null;
-                BufferedReader reader = null;
+            //이제 전송해볼까요?
+            final RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+            final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,testjson, new Response.Listener<JSONObject>() {
 
-                try{
-                    //URL url = new URL("http://192.168.25.16:3000/users");
-                    URL url = new URL(urls[0]);
-                    //연결을 함
-                    con = (HttpURLConnection) url.openConnection();
-
-                    con.setRequestMethod("POST");//POST방식으로 보냄
-                    con.setRequestProperty("Cache-Control", "no-cache");//캐시 설정
-                    con.setRequestProperty("Content-Type", "application/json");//application JSON 형식으로 전송
-
-
-                    con.setRequestProperty("Accept", "text/html");//서버에 response 데이터를 html로 받음
-                    con.setDoOutput(true);//Outstream으로 post 데이터를 넘겨주겠다는 의미
-                    con.setDoInput(true);//Inputstream으로 서버로부터 응답을 받겠다는 의미
-                    con.connect();
-
-                    //서버로 보내기위해서 스트림 만듬
-                    OutputStream outStream = con.getOutputStream();
-                    //버퍼를 생성하고 넣음
-                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outStream));
-                    writer.write(jsonObject.toString());
-                    writer.flush();
-                    writer.close();//버퍼를 받아줌
-
-                    //서버로 부터 데이터를 받음
-                    InputStream stream = con.getInputStream();
-
-                    reader = new BufferedReader(new InputStreamReader(stream));
-
-                    StringBuffer buffer = new StringBuffer();
-
-                    String line = "";
-                    while((line = reader.readLine()) != null){
-                        buffer.append(line);
-                    }
-
-                    return buffer.toString();//서버로 부터 받은 값을 리턴해줌 아마 OK!!가 들어올것임
-
-                } catch (MalformedURLException e){
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    if(con != null){
-                        con.disconnect();
-                    }
+                //데이터 전달을 끝내고 이제 그 응답을 받을 차례입니다.
+                @Override
+                public void onResponse(JSONObject response) {
                     try {
-                        if(reader != null){
-                            reader.close();//버퍼를 닫아줌
+                        Log.d("Test","데이터전송 성공");
+
+                        //받은 json형식의 응답을 받아
+                        JSONObject jsonObject = new JSONObject(response.toString());
+
+                        //key값에 따라 value값을 쪼개 받아옵니다.
+                        String resultId = jsonObject.getString("approve_id");
+                        String resultPassword = jsonObject.getString("approve_pw");
+
+                        //만약 그 값이 같다면 로그인에 성공한 것입니다.
+                        if(resultId.equals("OK") & resultPassword.equals("OK")){
+
+                            //이 곳에 성공 시 화면이동을 하는 등의 코드를 입력하시면 됩니다.
+                        }else{
+                            //로그인에 실패했을 경우 실행할 코드를 입력하시면 됩니다.
                         }
-                    } catch (IOException e) {
+
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            tvData.setText(result);//서버로 부터 받은 값을 출력해주는 부
+                //서버로 데이터 전달 및 응답 받기에 실패한 경우 아래 코드가 실행됩니다.
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                    Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+            jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            requestQueue.add(jsonObjectRequest);
+            Log.d("Test","요청 보냄");
+            //
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 
