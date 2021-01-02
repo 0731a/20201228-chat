@@ -30,10 +30,20 @@ app.post('/api/users/register', (req, res) => {
   //회원 가입 할때 필요한 정보들을 client에서 가져오면
   //그것들을 데이터 베이스에 넣어 준다.
   console.log("register~~");
+  /*
   dbConnection.query('select * from mbti.test', function (err, rows, fields) {
     console.log(rows);
   });
- 
+  */
+
+  post = req.body;
+  console.log(post.id);
+  dbConnection.query('INSERT INTO mbti.user (idx, id, name, email, phone, password) VALUES(?,?,?,?,?,?)',
+                [1,post.id, post.name, post.email, post.phone, post.password], function (err, result) {
+    if (err) {
+      res.send("There was a problem adding the information to the database.");
+  }
+  });
 
 
 
