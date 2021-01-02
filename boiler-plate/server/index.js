@@ -1,19 +1,12 @@
 const express = require('express'); /*익스프레스 모듈 가져옴 */
 const app = express(); /* app 제작 */
-const port = 5000;
+const port = 3000;
 
 const config = require('./config/key');
 
-const mongoose = require('mongoose');
-mongoose
-  .connect(config.mongoURI, {
-    userNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  })
-  .then(() => console.log('MongoDB Connect'))
-  .catch((err) => console.log(err));
+const mysqlDbConnection = require('./db/db_con')();
+const dbConnection = mysqlDbConnection.init();
+mysqlDbConnection.test_open(dbConnection);
 
 app.get('/api/hello', (req, res) => {
   res.send('안녕하세요~');
@@ -36,6 +29,15 @@ const { User } = require('./models/User');
 app.post('/api/users/register', (req, res) => {
   //회원 가입 할때 필요한 정보들을 client에서 가져오면
   //그것들을 데이터 베이스에 넣어 준다.
+  console.log("register~~");
+  dbConnection.query('select * from mbti.test', function (err, rows, fields) {
+    console.log(rows);
+  });
+ 
+
+
+
+  /*
   const user = new User(req.body);
 
   user.save((err, userInfo) => {
@@ -44,6 +46,8 @@ app.post('/api/users/register', (req, res) => {
       success: true,
     });
   }); // save = mongoDB 메소드
+
+  */
 });
 
 /*login 라우터*/

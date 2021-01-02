@@ -1,14 +1,14 @@
 package com.example.mbtichat;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -21,31 +21,36 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-public class MainActivity extends AppCompatActivity {
-
-    TextView tvData;
-
+public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_join);
 
-        tvData = (TextView)findViewById(R.id.textView);
-        Button btn = (Button)findViewById(R.id.httpTest);
+        EditText id = (EditText)findViewById(R.id.id);
+        EditText name = (EditText)findViewById(R.id.name);
+        EditText email = (EditText)findViewById(R.id.email);
+        EditText password = (EditText)findViewById(R.id.password);
+        EditText phone =  (EditText)findViewById(R.id.phone);
+
+        Button emailConfirm = (Button)findViewById(R.id.emailConfirm);
+        Button phoneConfirm = (Button)findViewById(R.id.phoneConfirm);
+        Button register = (Button)findViewById(R.id.register);
 
         //버튼이 클릭되면 여기 리스너로 옴
-        btn.setOnClickListener(new View.OnClickListener() {
+        emailConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        phoneConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 request();
@@ -55,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void request(){
         //url 요청주소 넣는 editText를 받아 url만들기
-        String url = "http://192.168.200.106:3000/api/users/register";
+        String url = "http://192.168.200.106:3000/register";
 
         //JSON형식으로 데이터 통신을 진행합니다!
         JSONObject testjson = new JSONObject();
@@ -66,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             String jsonString = testjson.toString(); //완성된 json 포맷
 
             //이제 전송해볼까요?
-            final RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+            final RequestQueue requestQueue = Volley.newRequestQueue(RegisterActivity.this);
             final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,testjson, new Response.Listener<JSONObject>() {
 
                 //데이터 전달을 끝내고 이제 그 응답을 받을 차례입니다.
@@ -87,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
                             //이 곳에 성공 시 화면이동을 하는 등의 코드를 입력하시면 됩니다.
                         }else{
-                            Toast.makeText(MainActivity.this, "존재하지 않는 아이디거나 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                            //로그인에 실패했을 경우 실행할 코드를 입력하시면 됩니다.
                         }
 
                     } catch (Exception e) {
@@ -99,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     error.printStackTrace();
-                    Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
             jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
@@ -110,6 +115,4 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 }
-
