@@ -52,10 +52,16 @@
         android:text="JOIN" />
 
     <Button
-        android:id="@+id/findId"
+        android:id="@+id/findUserInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="아이디/비밀번호 찾기" />
+
+    <Switch
+        android:id="@+id/autoLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="자동로그인" />
 
 </LinearLayout>
 

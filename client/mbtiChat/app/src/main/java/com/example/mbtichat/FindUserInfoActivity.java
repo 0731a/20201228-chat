@@ -17,9 +17,8 @@ public class FindUserInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finduserinfo);
 
-        tvData = (TextView) findViewById(R.id.textView);
-        Button btn = (Button) findViewById(R.id.httpTest);
-        Button join = (Button) findViewById(R.id.join);
+        Button btn = (Button) findViewById(R.id.findPassword);
+        Button join = (Button) findViewById(R.id.findId);
 
         //버튼이 클릭되면 여기 리스너로 옴
         btn.setOnClickListener(new View.OnClickListener() {

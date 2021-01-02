@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         tvData = (TextView)findViewById(R.id.textView);
         Button btn = (Button)findViewById(R.id.httpTest);
         Button join = (Button)findViewById(R.id.join);
+        Button findUserInfo = (Button) findViewById(R.id.findUserInfo);
 
         //버튼이 클릭되면 여기 리스너로 옴
         btn.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +58,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+        findUserInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, FindUserInfoActivity.class);
                 startActivity(intent);
             }
         });
