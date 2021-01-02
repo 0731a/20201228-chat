@@ -38,8 +38,8 @@ app.post('/api/users/register', (req, res) => {
 
   post = req.body;
   console.log(post.id);
-  dbConnection.query('INSERT INTO mbti.user (idx, id, name, email, phone, password) VALUES(?,?,?,?,?,?)',
-                [1,post.id, post.name, post.email, post.phone, post.password], function (err, result) {
+  dbConnection.query('INSERT INTO mbti.user ( id, name, email, phone, password) VALUES(?,?,?,?,?)',
+                [post.id, post.name, post.email, post.phone, post.password], function (err, result) {
     if (err) {
       res.send("There was a problem adding the information to the database.");
   }
