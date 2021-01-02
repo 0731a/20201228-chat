@@ -22,16 +22,24 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
+    EditText id;
+    EditText name;
+    EditText email;
+    EditText password;
+    EditText passwordConfirm;
+    EditText phone;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
 
-        EditText id = (EditText)findViewById(R.id.id);
-        EditText name = (EditText)findViewById(R.id.name);
-        EditText email = (EditText)findViewById(R.id.email);
-        EditText password = (EditText)findViewById(R.id.password);
-        EditText phone =  (EditText)findViewById(R.id.phone);
+        id = (EditText)findViewById(R.id.id);
+        name = (EditText)findViewById(R.id.name);
+        email = (EditText)findViewById(R.id.email);
+        password = (EditText)findViewById(R.id.password);
+        passwordConfirm = (EditText) findViewById(R.id.passwordConfirm);
+        phone =  (EditText)findViewById(R.id.phone);
 
         Button emailConfirm = (Button)findViewById(R.id.emailConfirm);
         Button phoneConfirm = (Button)findViewById(R.id.phoneConfirm);
@@ -53,26 +61,34 @@ public class RegisterActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                request();
+                String idS = id.getText().toString().trim();
+                String nameS = name.getText().toString().trim();
+                String emailS = email.getText().toString().trim();
+                String passwordS = password.getText().toString().trim();
+                String phoneS = phone.getText().toString().trim();
+                requestRegister(idS,nameS,emailS,passwordS,phoneS);
             }
         });
     }
 
-    public void request(){
+    public void requestRegister(String id, String name, String email, String password, String phone){
         //url 요청주소 넣는 editText를 받아 url만들기
-        String url = "http://192.168.200.106:3000/register";
+        String url = "http://192.168.200.106:3000/api/users/register";
 
         //JSON형식으로 데이터 통신을 진행합니다!
-        JSONObject testjson = new JSONObject();
+        JSONObject registerJson = new JSONObject();
         try {
             //입력해둔 edittext의 id와 pw값을 받아와 put해줍니다 : 데이터를 json형식으로 바꿔 넣어주었습니다.
-            testjson.put("user_id", "test");
-            testjson.put("name","yun");
-            String jsonString = testjson.toString(); //완성된 json 포맷
+            registerJson.put("id", id);
+            registerJson.put("name",name);
+            registerJson.put("email",email);
+            registerJson.put("phone",phone);
+            registerJson.put("password",password);
+            //String jsonString = testjson.toString(); //완성된 json 포맷
 
             //이제 전송해볼까요?
             final RequestQueue requestQueue = Volley.newRequestQueue(RegisterActivity.this);
-            final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,testjson, new Response.Listener<JSONObject>() {
+            final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,registerJson, new Response.Listener<JSONObject>() {
 
                 //데이터 전달을 끝내고 이제 그 응답을 받을 차례입니다.
                 @Override
@@ -89,9 +105,10 @@ public class RegisterActivity extends AppCompatActivity {
 
                         //만약 그 값이 같다면 로그인에 성공한 것입니다.
                         if(resultId.equals("OK") & resultPassword.equals("OK")){
-
+                            Log.d("Register","회원가입 성공");
                             //이 곳에 성공 시 화면이동을 하는 등의 코드를 입력하시면 됩니다.
                         }else{
+                            Log.d("Register","회원가입 실패");
                             //로그인에 실패했을 경우 실행할 코드를 입력하시면 됩니다.
                         }
 
