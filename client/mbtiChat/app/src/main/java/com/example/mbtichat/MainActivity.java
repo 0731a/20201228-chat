@@ -2,6 +2,7 @@ package com.example.mbtichat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,12 +44,20 @@ public class MainActivity extends AppCompatActivity {
 
         tvData = (TextView)findViewById(R.id.textView);
         Button btn = (Button)findViewById(R.id.httpTest);
+        Button join = (Button)findViewById(R.id.join);
 
         //버튼이 클릭되면 여기 리스너로 옴
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 request();
+            }
+        });
+        join.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }
