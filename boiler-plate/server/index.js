@@ -38,13 +38,16 @@ app.post('/api/users/register', (req, res) => {
 
   post = req.body;
   console.log(post.id);
+  let saltPassword = User.makePasswordSalt(post.password);
+  console.log(saltPassword);
   dbConnection.query('INSERT INTO mbti.user ( id, name, email, phone, password) VALUES(?,?,?,?,?)',
-                [post.id, post.name, post.email, post.phone, post.password], function (err, result) {
-    if (err) {
-      res.send("There was a problem adding the information to the database.");
-  }
+                [post.id, post.name, post.email, post.phone, saltPassword], function (err, result) {
+                  if (err) {
+                    console.log(err);
+                    return res.json({ success: false, err });
+                  }
+                  return res.status(200).json({  success: true,  });
   });
-
 
 
   /*
@@ -65,6 +68,22 @@ app.post('/api/users/register', (req, res) => {
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 app.post('/api/users/login', (req, res) => {
+  let id = req.body.id;
+  let password = req.body.password;
+  let query = 'SELECT * FROM mbti.user WHERE id = ?';
+  conn.query(query, [id], function(err, results){
+    if(err) console.log(err);
+    if(!results[0]) 
+      return res.json({
+        loginSuccess: false,
+        message: '아이디를 다시 확인해주세요.',
+      });
+
+    let user = results[0];
+
+
+  })
+
   //1. 요청된 이메일을 데이터 베이스에서 검색
   User.findOne({ email: req.body.email }, (err, userInfo) => {
     if (!userInfo) {

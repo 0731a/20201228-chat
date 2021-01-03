@@ -57,6 +57,22 @@ userSchema.pre('save', function (next) {
   }
 });
 
+userSchema.statics.makePasswordSalt = function(plainPassword){
+  
+  bcrypt.genSalt(saltRounds, function (err, salt) {
+    if (err) return 0;
+
+    bcrypt.hash(plainPassword, salt, function (err, hash) {
+      // user.password -> 비밀번호 원본 ( plain password)
+      //  비밀번호 DB에 해시를 저장합니다.
+      if (err) return 0;
+      return hash;
+    });
+  });
+
+
+};
+
 // 비밀번호 일치 확인 용 메소드 생성
 userSchema.methods.comparePassword = function (plainPassword, callback) {
   // 암호화 되어있는 비밀번호는 복구 불가능
