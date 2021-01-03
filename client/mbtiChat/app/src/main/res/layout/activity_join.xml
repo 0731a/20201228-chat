@@ -28,7 +28,6 @@
         android:inputType="textEmailAddress"
         android:text="이메일" />
 
-    6666766666
 
     <Button
         android:id="@+id/emailConfirm"
@@ -55,6 +54,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:maxLines="1"
+        android:maxLength="20"
         android:inputType="textPassword"
         android:text="비밀번호" />
 

@@ -1,6 +1,8 @@
 package com.example.mbtichat;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -28,6 +31,10 @@ public class RegisterActivity extends AppCompatActivity {
     EditText password;
     EditText passwordConfirm;
     EditText phone;
+    TextView passwordConfirmResult;
+
+    int colorOk;
+    int colorWarning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +48,14 @@ public class RegisterActivity extends AppCompatActivity {
         passwordConfirm = (EditText) findViewById(R.id.passwordConfirm);
         phone =  (EditText)findViewById(R.id.phone);
 
+        passwordConfirmResult = (TextView) findViewById(R.id.passwordConfirmResult);
+
         Button emailConfirm = (Button)findViewById(R.id.emailConfirm);
         Button phoneConfirm = (Button)findViewById(R.id.phoneConfirm);
         Button register = (Button)findViewById(R.id.register);
+
+        colorWarning = ContextCompat.getColor(this,R.color.colorWarning);
+        colorOk = ContextCompat.getColor(this,R.color.colorOk);
 
         //버튼이 클릭되면 여기 리스너로 옴
         emailConfirm.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +81,59 @@ public class RegisterActivity extends AppCompatActivity {
                 requestRegister(idS,nameS,emailS,passwordS,phoneS);
             }
         });
+
+        passwordConfirm.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // 입력되는 텍스트에 변화가 있을 때
+                if( passwordConfirm.getText().toString().length() > 0  && passwordConfirm.getText().toString().equals(password.getText().toString())){
+                    passwordConfirmResult.setText("비밀번호와 비밀번호확인이 일치합니다");
+                    passwordConfirmResult.setTextColor(colorOk);
+                }else{
+                    passwordConfirmResult.setText("비밀번호와 비밀번호확인이 일치하지 않습니다.");
+                    passwordConfirmResult.setTextColor(colorWarning);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable arg0) {
+                // 입력이 끝났을 때
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // 입력하기 전에
+            }
+
+        });
+
+        password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // 입력되는 텍스트에 변화가 있을 때
+                if( passwordConfirm.getText().toString().equals(password.getText().toString())){
+                    passwordConfirmResult.setText("비밀번호와 비밀번호확인이 일치합니다");
+                    passwordConfirmResult.setTextColor(colorOk);
+                }else{
+                    passwordConfirmResult.setText("비밀번호와 비밀번호확인이 일치하지 않습니다.");
+                    passwordConfirmResult.setTextColor(colorWarning);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable arg0) {
+                // 입력이 끝났을 때
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // 입력하기 전에
+            }
+
+        });
+
+
     }
 
     public void requestRegister(String id, String name, String email, String password, String phone){
@@ -133,3 +198,4 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 }
+
