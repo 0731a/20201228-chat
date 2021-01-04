@@ -1,4 +1,7 @@
 'use strict';
+// 1. config/config.json 파일의 설정값을 읽어 sequelize 생성
+// 2. models 폴더 아래에 존재하는 js파일을 모두 로딩
+// 3. db객체에 model을 정의하여 반환 
 
 const fs = require('fs');
 const path = require('path');
@@ -26,7 +29,7 @@ fs
   });
 
 Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
+  if (db[modelName].associate) {  //모델 관계 설정 
     db[modelName].associate(db);
   }
 });
