@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // application/json파일을 분석해서 가져올수 있게 함
 app.use(bodyParser.json());
 
-const { User } = require('./models/User');
+const { User } = require('./User');
 
 /*레지스터 라우터*/
 app.post('/api/users/register', (req, res) => {
