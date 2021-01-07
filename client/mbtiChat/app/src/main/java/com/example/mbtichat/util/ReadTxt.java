@@ -5,18 +5,25 @@ import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.util.Scanner; // Import the Scanner class to read text files
 
 public class ReadTxt {
-    public static void main(String[] args) {
+    private File file;
+    private Scanner reader;
+    public void openFile (String fileName) {
         try {
-            File myObj = new File("filename.txt");
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                System.out.println(data);
-            }
-            myReader.close();
+            file = new File(fileName);
+            reader = new Scanner(file);
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
+            System.out.println("Errror in File Read");
             e.printStackTrace();
         }
+    }
+
+    public String getLine(){
+        if(reader.hasNextLine()) {
+            return reader.nextLine();
+        }else return "EOF";
+    }
+
+    public void closeFile(){
+        reader.close();
     }
 }
