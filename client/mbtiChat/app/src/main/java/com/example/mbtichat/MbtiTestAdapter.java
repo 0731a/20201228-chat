@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.mbtichat.model.MbtiQuestion;
@@ -45,9 +47,18 @@ public class MbtiTestAdapter extends BaseAdapter {
 
         TextView question = convertView.findViewById(R.id.question);
         TextView index = convertView.findViewById(R.id.index);
+        RadioGroup radioGroup = convertView.findViewById(R.id.answer);
+        RadioButton yes = convertView.findViewById(R.id.yes);
+        RadioButton no = convertView.findViewById(R.id.no);
 
         question.setText(listItem.getQuestion());
         index.setText(listItem.getIndex()+"번째 질문");
+
+        switch( listItem.getAnswer() ){
+            case 0 : radioGroup.clearCheck(); break;
+            case 1 : yes.setChecked(true); break;
+            case 2 : no.setChecked(true); break;
+        }
 
         return convertView;
     }

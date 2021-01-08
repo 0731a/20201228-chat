@@ -24,12 +24,7 @@ public class MbtiTest {
     public ArrayList<Integer> resultByType = new ArrayList<Integer>(4);
 
     public MbtiTest(){
-        for( int i = 0; i < 8*9 ; i++ ){
-            result.set(i,0);
-        }
-        for( int i = 0; i < 4 ; i++ ){
-            resultByType.set(i,0);
-        }
+
     }
 
     public void setTxt(Context context){
