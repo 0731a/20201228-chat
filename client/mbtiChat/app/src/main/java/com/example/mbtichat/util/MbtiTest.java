@@ -20,7 +20,7 @@ public class MbtiTest {
     private int sCount = 0;
     private int tCount = 0;
     private int jCount = 0;
-    ArrayList<MbtiQuestion> questionList = new ArrayList<MbtiQuestion>();
+    public ArrayList<MbtiQuestion> questionList = new ArrayList<MbtiQuestion>();
 
 
     public MbtiTest(){
@@ -42,8 +42,8 @@ public class MbtiTest {
             while (( line = buffreader.readLine()) != null) {
                 MbtiQuestion question = new MbtiQuestion();
                 question.setType(line.charAt(0));
-                question.setIndex(line.charAt(3)-'0');
-                question.setQuestion(line.substring(5));
+                question.setIndex(line.charAt(2)-'0');
+                question.setQuestion(line.substring(4));
 
                 questionList.add(question);
                 Log.d("log",i+" : "+ line);
