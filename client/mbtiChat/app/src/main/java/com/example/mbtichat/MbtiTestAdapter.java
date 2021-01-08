@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.mbtichat.model.MbtiQuestion;
@@ -53,9 +54,20 @@ public class MbtiTestAdapter extends BaseAdapter {
         items.add(item);
     }
 
-    public void setQuestion(ArrayList<MbtiQuestion> list){
-        for( int i= 0; i < list.size(); i++ ){
-            addItem(list.get(i));
+    public void setQuestion(int page, ArrayList<MbtiQuestion> list){
+        for( int i= 0; i < list.size() ; i++ ){
+                addItem(list.get(i));
+        }
+    }
+
+    public void setQuestionVisible(int page, ListView listView){
+        for( int i= 0; i < 72; i++ ){
+                View child = listView.getChildAt(i);
+                if( child == null ) continue;
+                child.setVisibility(View.GONE);
+            if( page*9 <= i && i < page*9 + 9){
+                child.setVisibility(View.VISIBLE);
+            }
         }
     }
 

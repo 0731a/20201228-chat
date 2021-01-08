@@ -10,6 +10,18 @@
         android:text="MBTI TEST"
         android:textSize="30sp" />
 
+    <Button
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="다음" />
+
+    <Button
+        android:id="@+id/before"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이전" />
+
     <ListView
         android:id="@+id/questions"
         android:layout_width="match_parent"
@@ -22,17 +34,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="20/40페이지" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/before"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="이전" />
 
 </LinearLayout>
