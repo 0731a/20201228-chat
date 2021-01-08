@@ -33,7 +33,7 @@ public class MbtiTestActivity extends AppCompatActivity {
 
         mbtiTest =  new MbtiTest();
         mbtiTest.setTxt(this);
-        questionAdapter.setQuestion(page,mbtiTest.questionList);
+        questionAdapter.setQuestions(page,mbtiTest.questionList);
         questionListView.setAdapter(questionAdapter);
 
         next.setOnClickListener(new View.OnClickListener() {
@@ -42,9 +42,8 @@ public class MbtiTestActivity extends AppCompatActivity {
                 if( page == MaxPage ) return;
                 page++;
                 //questionListView.removeAllViews();
-                questionAdapter.setQuestionVisible(page,questionListView);
-                //questionAdapter.setQuestion(page,mbtiTest.questionList);
-                //questionListView.setAdapter(questionAdapter);
+                questionAdapter.setQuestions(page,mbtiTest.questionList);
+                questionAdapter.notifyDataSetChanged();
 
 
             }
@@ -55,10 +54,9 @@ public class MbtiTestActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if( page == 0 ) return;
                 page--;
-               // questionListView.removeAllViews();
-                questionAdapter.setQuestionVisible(page,questionListView);
-                //questionAdapter.setQuestion(page,mbtiTest.questionList);
-                //questionListView.setAdapter(questionAdapter);
+                //questionListView.removeAllViews();
+                questionAdapter.setQuestions(page,mbtiTest.questionList);
+                questionAdapter.notifyDataSetChanged();
             }
         });
 
