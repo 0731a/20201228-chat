@@ -1,8 +1,10 @@
-package com.example.mbtichat;
+package com.example.mbtichat.Activity;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.mbtichat.R;
 
 public class MbtiTestActivity extends AppCompatActivity {
     @Override
