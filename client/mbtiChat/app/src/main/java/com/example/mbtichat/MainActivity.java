@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.mbtichat.Activity.MbtiTestActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -64,10 +65,13 @@ public class MainActivity extends AppCompatActivity {
         findUserInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, FindUserInfoActivity.class);
+                //Intent intent = new Intent(MainActivity.this, FindUserInfoActivity.class);
+                Intent intent = new Intent(MainActivity.this, MbtiTestActivity.class);
                 startActivity(intent);
             }
         });
+
+
     }
 
     public void request(){

@@ -4,10 +4,14 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.mbtichat.R;
+import com.example.mbtichat.model.MbtiQuestion;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class MbtiTest {
     private ReadTxt readTxt;
@@ -16,7 +20,7 @@ public class MbtiTest {
     private int sCount = 0;
     private int tCount = 0;
     private int jCount = 0;
-    ArrayList<Mbti> questionList;
+    ArrayList<MbtiQuestion> questionList = new ArrayList<MbtiQuestion>();
 
 
     public MbtiTest(){
@@ -25,18 +29,25 @@ public class MbtiTest {
 
     public void setTxt(Context context){
         String result = "";
-        InputStream txtResource = context.getResources().openRawResource(R.raw.mbtitest);
+        InputStream inputStream = context.getResources().openRawResource(R.raw.mbtitest);
 
         InputStreamReader inputreader = new InputStreamReader(inputStream);
         BufferedReader buffreader = new BufferedReader(inputreader);
         String line;
         StringBuilder text = new StringBuilder();
 
+        int i = 0;
+
         try {
             while (( line = buffreader.readLine()) != null) {
-                myView.append(line);
-                Log.d("log",line);
-                myView.append("\n");
+                MbtiQuestion question = new MbtiQuestion();
+                question.setType(line.charAt(0));
+                question.setIndex(line.charAt(3)-'0');
+                question.setQuestion(line.substring(5));
+
+                questionList.add(question);
+                Log.d("log",i+" : "+ line);
+                i++;
             }
         } catch (IOException e) {
             Log.d("log","읽기 실패");

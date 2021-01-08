@@ -1,8 +1,8 @@
 package com.example.mbtichat.model;
 
-public class mbtiQuestion {
+public class MbtiQuestion {
     private int index;
-    private int type;
+    private char type;
     private String question;
     public static char typeList[] = {'E','I','S','N','T','F','J','P'};
 
@@ -14,11 +14,11 @@ public class mbtiQuestion {
         this.index = index;
     }
 
-    public int getType() {
+    public char getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(char type) {
         this.type = type;
     }
 
