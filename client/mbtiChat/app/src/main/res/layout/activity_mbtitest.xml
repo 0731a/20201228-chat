@@ -22,6 +22,12 @@
         android:layout_height="wrap_content"
         android:text="이전" />
 
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="제출" />
+
     <ListView
         android:id="@+id/questions"
         android:layout_width="match_parent"

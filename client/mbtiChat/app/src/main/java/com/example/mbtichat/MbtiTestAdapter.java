@@ -14,8 +14,10 @@ import com.example.mbtichat.util.MbtiTest;
 import java.util.ArrayList;
 
 public class MbtiTestAdapter extends BaseAdapter {
+    ArrayList<MbtiQuestion> origin;
     ArrayList<MbtiQuestion> items = new ArrayList<MbtiQuestion>();
     Context context;
+
     @Override
     public int getCount() {
         return items.size();

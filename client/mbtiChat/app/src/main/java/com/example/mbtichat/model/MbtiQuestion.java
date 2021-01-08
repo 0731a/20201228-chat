@@ -4,6 +4,16 @@ public class MbtiQuestion {
     private int index;
     private char type;
     private String question;
+    private int answer;
+
+    public int getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(int answer) {
+        this.answer = answer;
+    }
+
     public static char typeList[] = {'E','I','S','N','T','F','J','P'};
 
     public int getIndex() {

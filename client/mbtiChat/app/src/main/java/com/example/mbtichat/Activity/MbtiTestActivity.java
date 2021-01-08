@@ -28,6 +28,7 @@ public class MbtiTestActivity extends AppCompatActivity {
 
         Button next = (Button) findViewById(R.id.next);
         Button before = (Button) findViewById(R.id.before);
+        Button submit  = (Button) findViewById(R.id.submit);
         questionListView = findViewById(R.id.questions);
         questionAdapter = new MbtiTestAdapter();
 
@@ -45,7 +46,6 @@ public class MbtiTestActivity extends AppCompatActivity {
                 questionAdapter.setQuestions(page,mbtiTest.questionList);
                 questionAdapter.notifyDataSetChanged();
 
-
             }
         });
 
@@ -57,6 +57,13 @@ public class MbtiTestActivity extends AppCompatActivity {
                 //questionListView.removeAllViews();
                 questionAdapter.setQuestions(page,mbtiTest.questionList);
                 questionAdapter.notifyDataSetChanged();
+            }
+        });
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
