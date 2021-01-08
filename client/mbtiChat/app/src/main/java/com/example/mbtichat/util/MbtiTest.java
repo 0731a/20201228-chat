@@ -1,6 +1,7 @@
 package com.example.mbtichat.util;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.mbtichat.R;
 
@@ -15,6 +16,7 @@ public class MbtiTest {
     private int sCount = 0;
     private int tCount = 0;
     private int jCount = 0;
+    ArrayList<Mbti> questionList;
 
 
     public MbtiTest(){
@@ -24,6 +26,25 @@ public class MbtiTest {
     public void setTxt(Context context){
         String result = "";
         InputStream txtResource = context.getResources().openRawResource(R.raw.mbtitest);
+
+        InputStreamReader inputreader = new InputStreamReader(inputStream);
+        BufferedReader buffreader = new BufferedReader(inputreader);
+        String line;
+        StringBuilder text = new StringBuilder();
+
+        try {
+            while (( line = buffreader.readLine()) != null) {
+                myView.append(line);
+                Log.d("log",line);
+                myView.append("\n");
+            }
+        } catch (IOException e) {
+            Log.d("log","읽기 실패");
+        }
+
+
+
+        /*
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         int i;
         try {
@@ -37,6 +58,8 @@ public class MbtiTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
+
     }
 
     public String getTestResult(){
