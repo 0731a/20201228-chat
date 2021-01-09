@@ -1,20 +1,21 @@
 package com.example.mbtichat.model;
 
 public class MbtiQuestion {
+    private int type;
     private int index;
-    private char type;
-    private String question;
+    private String firstQuestion;
+    private String secondQuestion;
     private int answer;
 
-    public int getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(int answer) {
-        this.answer = answer;
-    }
-
     public static char typeList[] = {'E','I','S','N','T','F','J','P'};
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public int getIndex() {
         return index;
@@ -24,19 +25,31 @@ public class MbtiQuestion {
         this.index = index;
     }
 
-    public char getType() {
-        return type;
+    public String getFirstQuestion() {
+        return firstQuestion;
     }
 
-    public void setType(char type) {
-        this.type = type;
+    public void setFirstQuestion(String firstQuestion) {
+        this.firstQuestion = firstQuestion;
     }
 
-    public String getQuestion() {
-        return question;
+    public String getSecondQuestion() {
+        return secondQuestion;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public void setSecondQuestion(String secondQuestion) {
+        this.secondQuestion = secondQuestion;
     }
+
+    public int getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(int answer) {
+        this.answer = answer;
+    }
+
+
+
+
 }

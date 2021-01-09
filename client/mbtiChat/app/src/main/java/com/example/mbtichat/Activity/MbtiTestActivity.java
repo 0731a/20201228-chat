@@ -19,7 +19,7 @@ public class MbtiTestActivity extends AppCompatActivity {
     ArrayList<Integer> result;
     MbtiTest mbtiTest;
     int page = 0;
-    int MaxPage =  7;
+    int MaxPage =  4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,6 @@ public class MbtiTestActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if( page == MaxPage ) return;
                 page++;
-                //questionListView.removeAllViews();
                 questionAdapter.setQuestions(page);
                 questionAdapter.notifyDataSetChanged();
 
@@ -55,7 +54,6 @@ public class MbtiTestActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if( page == 0 ) return;
                 page--;
-                //questionListView.removeAllViews();
                 questionAdapter.setQuestions(page);
                 questionAdapter.notifyDataSetChanged();
             }

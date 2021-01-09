@@ -54,7 +54,8 @@ public class MbtiTestAdapter extends BaseAdapter {
         RadioButton yes = convertView.findViewById(R.id.yes);
         RadioButton no = convertView.findViewById(R.id.no);
 
-        question.setText(listItem.getQuestion());
+        yes.setText(listItem.getFirstQuestion());
+        no.setText(listItem.getSecondQuestion());
         index.setText(listItem.getIndex()+"번째 질문");
         Log.d("listItem.getAnswer",listItem.getIndex()+"는 "+listItem.getAnswer());
 

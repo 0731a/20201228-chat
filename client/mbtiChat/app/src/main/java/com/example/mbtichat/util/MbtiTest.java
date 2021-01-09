@@ -14,16 +14,18 @@ import java.util.ArrayList;
 
 public class MbtiTest {
     private ReadTxt readTxt;
+    public static int maxPageLength = 4;
     public static ArrayList<MbtiQuestion> questionList = new ArrayList<MbtiQuestion>();
-    public static ArrayList<Integer> resultByType = new ArrayList<Integer>(4);
 
     public MbtiTest(){
 
     }
 
+
     public static void setTxt(Context context){
         String result = "";
         InputStream inputStream = context.getResources().openRawResource(R.raw.mbtitest);
+
 
         InputStreamReader inputreader = new InputStreamReader(inputStream);
         BufferedReader buffreader = new BufferedReader(inputreader);
@@ -34,12 +36,16 @@ public class MbtiTest {
 
         try {
             while (( line = buffreader.readLine()) != null) {
+                Log.d("line",line);
                 MbtiQuestion question = new MbtiQuestion();
                 question.setAnswer(0);
-                question.setType(line.charAt(0));
-                //question.setIndex(line.charAt(2)-'0');
+                question.setType(line.charAt(0)-'0');
+                Log.d("setType",question.getType()+"-----------------");
                 question.setIndex(i);
-                question.setQuestion(line.substring(4));
+                String[] array = line.substring(2).split("\\. ");
+
+                question.setFirstQuestion(array[0]);
+                question.setSecondQuestion(array[1]);
 
                 questionList.add(question);
                 Log.d("log",i+" : "+ line);
@@ -86,36 +92,27 @@ public class MbtiTest {
         int jCount = 0;
 
         for(int i= 0; i < questionList.size(); i++){
-            char type = questionList.get(i).getType();
+            int type = questionList.get(i).getType();
             int answer = questionList.get(i).getAnswer();
+            Log.d("type",type+"");
 
             switch( type ){
-                case 'E': if(answer == 1) eCount++;
-                          else sCount--;
+                case 1 : if(answer == 1) eCount++;
+                          else eCount--;
                           break;
-                case 'I' : if(answer == 1) eCount--;
-                           else eCount++;
+                case 2 : if(answer == 1) sCount++;
+                           else sCount--;
                            break;
-                case 'S' : if(answer == 1) sCount++;
-                           else sCount --;
-                           break;
-                case 'N' : if(answer == 1) sCount--;
-                           else sCount++;
-                           break;
-                case 'T' : if(answer == 1) tCount++;
+                case 3 : if(answer == 1) tCount++;
                            else tCount--;
                            break;
-                case 'F' : if(answer == 1) tCount--;
-                           else tCount++;
-                           break;
-                case 'J' : if(answer == 1) jCount++;
+                case 4 : if(answer == 1) jCount++;
                            else jCount--;
-                           break;
-                case 'P' : if(answer == 1) jCount--;
-                           else jCount++;
                            break;
             }
         }
+
+        Log.d("sCount",sCount+"");
 
         if( eCount > 0 ) result += "E";
         else result += "I";
