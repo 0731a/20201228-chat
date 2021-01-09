@@ -30,11 +30,12 @@ public class MbtiTestActivity extends AppCompatActivity {
         Button before = (Button) findViewById(R.id.before);
         Button submit  = (Button) findViewById(R.id.submit);
         questionListView = findViewById(R.id.questions);
-        questionAdapter = new MbtiTestAdapter();
 
+        questionAdapter = new MbtiTestAdapter();
         mbtiTest =  new MbtiTest();
         mbtiTest.setTxt(this);
-        questionAdapter.setQuestions(page,mbtiTest.questionList);
+        questionAdapter.setMbtiTest(mbtiTest);
+        questionAdapter.setQuestions(page);
         questionListView.setAdapter(questionAdapter);
 
         next.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +44,7 @@ public class MbtiTestActivity extends AppCompatActivity {
                 if( page == MaxPage ) return;
                 page++;
                 //questionListView.removeAllViews();
-                questionAdapter.setQuestions(page,mbtiTest.questionList);
+                questionAdapter.setQuestions(page);
                 questionAdapter.notifyDataSetChanged();
 
             }
@@ -55,7 +56,7 @@ public class MbtiTestActivity extends AppCompatActivity {
                 if( page == 0 ) return;
                 page--;
                 //questionListView.removeAllViews();
-                questionAdapter.setQuestions(page,mbtiTest.questionList);
+                questionAdapter.setQuestions(page);
                 questionAdapter.notifyDataSetChanged();
             }
         });

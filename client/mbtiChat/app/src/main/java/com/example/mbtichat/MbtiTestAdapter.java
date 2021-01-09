@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -16,10 +15,13 @@ import com.example.mbtichat.util.MbtiTest;
 import java.util.ArrayList;
 
 public class MbtiTestAdapter extends BaseAdapter {
-    ArrayList<MbtiQuestion> origin;
+    MbtiTest mbtiTest = null;
     ArrayList<MbtiQuestion> items = new ArrayList<MbtiQuestion>();
     Context context;
 
+    public void setMbtiTest(MbtiTest mbtiTest){
+        this.mbtiTest = mbtiTest;
+    }
     @Override
     public int getCount() {
         return items.size();
@@ -36,9 +38,9 @@ public class MbtiTestAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         context = parent.getContext();
-        MbtiQuestion listItem = items.get(position);
+        final MbtiQuestion listItem = items.get(position);
 
         if( convertView == null ){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -46,7 +48,7 @@ public class MbtiTestAdapter extends BaseAdapter {
         }
 
         TextView question = convertView.findViewById(R.id.question);
-        TextView index = convertView.findViewById(R.id.index);
+        final TextView index = convertView.findViewById(R.id.index);
         RadioGroup radioGroup = convertView.findViewById(R.id.answer);
         RadioButton yes = convertView.findViewById(R.id.yes);
         RadioButton no = convertView.findViewById(R.id.no);
@@ -60,6 +62,20 @@ public class MbtiTestAdapter extends BaseAdapter {
             case 2 : no.setChecked(true); break;
         }
 
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mbtiTest.getAnswer(listItem.getIndex(),true);
+            }
+        });
+
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mbtiTest.getAnswer(listItem.getIndex(),false);
+            }
+        });
+
         return convertView;
     }
 
@@ -71,10 +87,10 @@ public class MbtiTestAdapter extends BaseAdapter {
         items.clear();
     }
 
-    public void setQuestions(int page, ArrayList<MbtiQuestion> list){
+    public void setQuestions(int page ){
         clearQuestions();
-        for( int i= page*9; i < page*9 + 9 && i < list.size() ; i++ ){
-                addItem(list.get(i));
+        for( int i= page*9; i < page*9 + 9 && i < mbtiTest.questionList.size() ; i++ ){
+                addItem(mbtiTest.questionList.get(i));
         }
     }
 

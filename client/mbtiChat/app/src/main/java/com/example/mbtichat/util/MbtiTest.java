@@ -19,15 +19,14 @@ public class MbtiTest {
     private int sCount = 0;
     private int tCount = 0;
     private int jCount = 0;
-    public ArrayList<MbtiQuestion> questionList = new ArrayList<MbtiQuestion>();
-    public ArrayList<Integer> result = new ArrayList<Integer>(8*9);
-    public ArrayList<Integer> resultByType = new ArrayList<Integer>(4);
+    public static ArrayList<MbtiQuestion> questionList = new ArrayList<MbtiQuestion>();
+    public static ArrayList<Integer> resultByType = new ArrayList<Integer>(4);
 
     public MbtiTest(){
 
     }
 
-    public void setTxt(Context context){
+    public static void setTxt(Context context){
         String result = "";
         InputStream inputStream = context.getResources().openRawResource(R.raw.mbtitest);
 
@@ -43,7 +42,8 @@ public class MbtiTest {
                 MbtiQuestion question = new MbtiQuestion();
                 question.setAnswer(0);
                 question.setType(line.charAt(0));
-                question.setIndex(line.charAt(2)-'0');
+                //question.setIndex(line.charAt(2)-'0');
+                question.setIndex(i);
                 question.setQuestion(line.substring(4));
 
                 questionList.add(question);
@@ -71,21 +71,13 @@ public class MbtiTest {
         return result;
     }
 
-    public void getAnswer( int index , boolean answer ){
-        if( true ) result.set(index, 1);
-        else result.set(index, 2);
+    public static void getAnswer( int index , boolean answer ){
+        if( true ) questionList.get(index).setAnswer(1);
+        else questionList.get(index).setAnswer(2);
     }
 
     public void submitAnswer(){
-        for( int i = 0; i < 8; i ++ ){
-            for( int j = 0; j < 9; j++ ){
-                if( result.get( i*9+ j ) == 1){
-                    resultByType.set(i, resultByType.get(i)+1);
-                }else{
-                    resultByType.set(i, resultByType.get(i)-1);
-                }
-            }
-        }
+
     }
 
 }
