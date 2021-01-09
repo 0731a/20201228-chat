@@ -40,7 +40,6 @@ public class MbtiTest {
                 MbtiQuestion question = new MbtiQuestion();
                 question.setAnswer(0);
                 question.setType(line.charAt(0)-'0');
-                Log.d("setType",question.getType()+"-----------------");
                 question.setIndex(i);
                 String[] array = line.substring(2).split("\\. ");
 
