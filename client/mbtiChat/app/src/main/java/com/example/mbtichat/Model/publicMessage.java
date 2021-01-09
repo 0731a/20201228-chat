@@ -2,7 +2,7 @@ package com.example.mbtichat.Model;
 
 import java.util.Date;
 
-public class RandChat {
+public class publicMessage {
     private Date date;
     private String writer;
     private String mbti;
