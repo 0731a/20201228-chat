@@ -76,8 +76,26 @@ public class MbtiTest {
         else questionList.get(index).setAnswer(2);
     }
 
-    public void submitAnswer(){
+    public ArrayList<Integer> submitAnswer(){
+        ArrayList<Integer> notCheckedAnswers = new ArrayList<Integer>();
+        for( int i= 0; i < questionList.size() ; i ++ ){
+            if( questionList.get(i).getAnswer() == 0 )
+                notCheckedAnswers.add(i);
+        }
 
+        return notCheckedAnswers;
+    }
+
+    public void submitAnswerResult(){
+        ArrayList<Integer> result = submitAnswer();
+        if( result.size() == 0 ) Log.d("result", "모두 작성되었습니다.");
+        else{
+            String s = "";
+            for(int i= 0; i < result.size(); i ++ )
+                s += ( "," + result.get(i) +" " );
+            s+= "문항이 아직 완료되지 않았습니다.";
+            Log.d("result",s);
+        }
     }
 
 }
