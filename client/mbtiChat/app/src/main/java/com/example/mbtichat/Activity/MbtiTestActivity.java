@@ -65,6 +65,7 @@ public class MbtiTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mbtiTest.submitAnswerResult();
+                mbtiTest.getResult();
             }
         });
 

@@ -7,7 +7,6 @@ import com.example.mbtichat.R;
 import com.example.mbtichat.model.MbtiQuestion;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -15,10 +14,6 @@ import java.util.ArrayList;
 
 public class MbtiTest {
     private ReadTxt readTxt;
-    private int eCount = 0;
-    private int sCount = 0;
-    private int tCount = 0;
-    private int jCount = 0;
     public static ArrayList<MbtiQuestion> questionList = new ArrayList<MbtiQuestion>();
     public static ArrayList<Integer> resultByType = new ArrayList<Integer>(4);
 
@@ -56,23 +51,8 @@ public class MbtiTest {
 
     }
 
-    public String getTestResult(){
-        String result = "";
-
-        if(eCount>0) result += 'E' ;
-        else result += "I";
-        if(sCount>0) result += 'S' ;
-        else result += 'N';
-        if(tCount>0) result += 'T';
-        else result += 'F';
-        if(jCount>0) result +='J';
-        else result += 'P';
-
-        return result;
-    }
-
     public static void getAnswer( int index , boolean answer ){
-        if( true ) questionList.get(index).setAnswer(1);
+        if( answer ) questionList.get(index).setAnswer(1);
         else questionList.get(index).setAnswer(2);
     }
 
@@ -96,6 +76,58 @@ public class MbtiTest {
             s+= "문항이 아직 완료되지 않았습니다.";
             Log.d("result",s);
         }
+    }
+
+    public void getResult(){
+        String result = "";
+        int eCount = 0;
+        int sCount = 0;
+        int tCount = 0;
+        int jCount = 0;
+
+        for(int i= 0; i < questionList.size(); i++){
+            char type = questionList.get(i).getType();
+            int answer = questionList.get(i).getAnswer();
+
+            switch( type ){
+                case 'E': if(answer == 1) eCount++;
+                          else sCount--;
+                          break;
+                case 'I' : if(answer == 1) eCount--;
+                           else eCount++;
+                           break;
+                case 'S' : if(answer == 1) sCount++;
+                           else sCount --;
+                           break;
+                case 'N' : if(answer == 1) sCount--;
+                           else sCount++;
+                           break;
+                case 'T' : if(answer == 1) tCount++;
+                           else tCount--;
+                           break;
+                case 'F' : if(answer == 1) tCount--;
+                           else tCount++;
+                           break;
+                case 'J' : if(answer == 1) jCount++;
+                           else jCount--;
+                           break;
+                case 'P' : if(answer == 1) jCount--;
+                           else jCount++;
+                           break;
+            }
+        }
+
+        if( eCount > 0 ) result += "E";
+        else result += "I";
+        if( sCount > 0 ) result += "S";
+        else result += "N";
+        if( tCount > 0 ) result += "T";
+        else result += "F";
+        if( jCount > 0 ) result += "J";
+        else result += "P";
+
+        Log.d("result",result+" 결과 입니다. ");
+
     }
 
 }

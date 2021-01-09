@@ -1,6 +1,7 @@
 package com.example.mbtichat;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,7 @@ public class MbtiTestAdapter extends BaseAdapter {
 
         question.setText(listItem.getQuestion());
         index.setText(listItem.getIndex()+"번째 질문");
+        Log.d("listItem.getAnswer",listItem.getIndex()+"는 "+listItem.getAnswer());
 
         switch( listItem.getAnswer() ){
             case 0 : radioGroup.clearCheck(); break;
