@@ -1,10 +1,11 @@
-package com.example.mbtichat.util;
+package com.example.mbtichat.Service;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.example.mbtichat.R;
-import com.example.mbtichat.model.MbtiQuestion;
+import com.example.mbtichat.Model.MbtiQuestion;
+import com.example.mbtichat.Util.ReadTxt;
 
 import java.io.BufferedReader;
 import java.io.IOException;

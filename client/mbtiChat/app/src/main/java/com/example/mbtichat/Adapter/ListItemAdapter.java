@@ -1,4 +1,4 @@
-package com.example.mbtichat;
+package com.example.mbtichat.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.example.mbtichat.ListItem;
+import com.example.mbtichat.R;
 
 import java.util.ArrayList;
 

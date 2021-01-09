@@ -1,4 +1,4 @@
-package com.example.mbtichat;
+package com.example.mbtichat.Activity;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.mbtichat.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,4 +1,4 @@
-package com.example.mbtichat.util;
+package com.example.mbtichat.Model;
 
 import java.util.Date;
 

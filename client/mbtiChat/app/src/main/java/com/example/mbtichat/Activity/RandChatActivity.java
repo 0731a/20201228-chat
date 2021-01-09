@@ -1,4 +1,4 @@
-package com.example.mbtichat;
+package com.example.mbtichat.Activity;
 
 import android.os.Bundle;
 

@@ -1,4 +1,4 @@
-package com.example.mbtichat.model;
+package com.example.mbtichat.Model;
 
 public class User {
     private int idx;

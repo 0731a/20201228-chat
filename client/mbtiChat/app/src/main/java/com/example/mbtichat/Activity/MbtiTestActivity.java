@@ -7,9 +7,9 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mbtichat.MbtiTestAdapter;
+import com.example.mbtichat.Adapter.MbtiTestAdapter;
 import com.example.mbtichat.R;
-import com.example.mbtichat.util.MbtiTest;
+import com.example.mbtichat.Service.MbtiTest;
 
 import java.util.ArrayList;
 

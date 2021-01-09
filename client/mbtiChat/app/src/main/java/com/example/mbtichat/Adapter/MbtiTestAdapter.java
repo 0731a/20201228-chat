@@ -1,4 +1,4 @@
-package com.example.mbtichat;
+package com.example.mbtichat.Adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -10,8 +10,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.example.mbtichat.model.MbtiQuestion;
-import com.example.mbtichat.util.MbtiTest;
+import com.example.mbtichat.Model.MbtiQuestion;
+import com.example.mbtichat.R;
+import com.example.mbtichat.Service.MbtiTest;
 
 import java.util.ArrayList;
 
