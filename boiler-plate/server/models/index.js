@@ -37,4 +37,46 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-module.exports = db;
+db.user = require('./user')(sequelize,Sequelize);
+db.mbti = require('./mbti')(sequelize,Sequelize);
+db.user_has_board = require('./user_has_board')(sequelize,Sequelize);
+
+db.board = require('./board')(sequelize,Sequelize);
+db.board_post = require('./board_post')(sequelize,Sequelize);
+
+db.public_chat = require('./public_chat')(sequelize,Sequelize);
+
+db.random_chat_matching = require('./random_chat_matching')(sequelize,Sequelize);
+db.random_chat_message = require('./random_chat_message')(sequelize,Sequelize);
+
+db.question_chat_list = require('./question_chat_list')(sequelize,Sequelize);
+db.question_chat_answer = require('./question_chat_answer')(sequelize,Sequelize);
+
+// 포함 관계 
+
+db.mbti.hasMany(db.user, {foreignKey: 'mbti_idx', sourceKey:"idx"});
+db.user.belongsTo(db.mbti, {foreignKey:'mbti_idx', targetKey: "idx"});
+
+db.question_chat_list.hasMany(db.question_chat_answer, {foreignKey: 'question_idx', sourceKey:"idx"});
+db.question_chat_answer.belongsTo(db.question_chat_list, {foreignKey:'question_idx', targetKey: "idx"});
+
+db.user.hasMany(db.board, {foreignKey: 'maker', sourceKey:"idx"});
+db.board.belongsTo(db.user, {foreignKey:'maker', targetKey: "idx"});
+
+db.user.hasMany(db.user_has_board, {foreignKey: 'user_idx', sourceKey:"idx"});
+db.user_has_board.belongsTo(db.user, {foreignKey:'user_idx', targetKey: "idx"});
+db.board.hasMany(db.user_has_board, {foreignKey: 'board_idx', sourceKey:"idx"});
+db.user_has_board.belongsTo(db.board, {foreignKey:'board_idx', targetKey: "idx"});
+
+db.board.hasMany(db.board_post, {foreignKey: 'board_idx', sourceKey:"idx"});
+db.board_post.belongsTo(db.user, {foreignKey:'board_idx', targetKey: "idx"});
+
+db.user.hasMany(db.random_chat_matching, {foreignKey: 'user_idx', sourceKey:"idx"});
+db.random_chat_matching.belongsTo(db.user, {foreignKey:'user_idx', targetKey: "idx"});
+db.random_chat_matching.hasMany(db.random_chat_message, {foreignKey: 'matching_idx', sourceKey:"idx"});
+db.random_chat_message.belongsTo(db.random_chat_matching, {foreignKey:'matching_idx', targetKey: "idx"});
+
+
+
+
+module.exports = db

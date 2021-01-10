@@ -12,6 +12,9 @@ app.use(bodyParser.json());
 
 console.log("server start");
 
+const sequelize = require('./models').sequelize;
+sequelize.sync();
+
 
 app.get('/sign_up', function(req, res, next) {
   console.log("sign in");

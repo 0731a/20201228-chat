@@ -19,14 +19,10 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true,
       type: DataTypes.INTEGER
-    },
-    text: {
-      type: DataTypes.STRING,
-      allowNull: true
     }
   }, {
     sequelize,
-    modelName: 'Question_chat_answer'
+    modelName: 'user_has_board'
   });
   return user;
 };
