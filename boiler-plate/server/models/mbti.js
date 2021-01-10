@@ -20,35 +20,18 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    id: {
+    type: {
       allowNull: false,
       type: DataTypes.STRING
     },
-    name: {
+    description: {
       type: DataTypes.STRING,
-      allowNull: false
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isEmail: true
-      }
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    salt: {
-      type: DataTypes.STRING
-    },
-    createdAt: {
-      allowNull: false,
-      type: DataTypes.DATE
+      allowNull: true
     }
   }, {
     sequelize,
-    modelName: 'User',
+    modelName: 'Mbti',
+    timestamps: false
   });
   return user;
 };
