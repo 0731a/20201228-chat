@@ -1,8 +1,11 @@
 const express = require('express');
 const models = require("./models");
 const app = express(); /* app 제작 */
-const port = 5500;
+const port = 3000;
 const bodyParser = require('body-parser');
+const crypto = require('crypto'); //비밀번호 암호화 위함 
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 //application/x-www-form-urlencoded 데이터를 분석해서 가져오게 해줌
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -11,39 +14,38 @@ app.use(bodyParser.json());
 
 
 console.log("server start");
-
+/*
 const sequelize = require('./models').sequelize;
 sequelize.sync();
+*/
 
-
-app.get('/sign_up', function(req, res, next) {
+app.get('/user/sign_up', async function(req, res, next) {
   console.log("sign in");
-  //res.render("user/signup");
-  models.user.create({
-    name: "안서영2",
-    email: "98_073@anver.com",
-    password: "1234"
-  })
+  res.render("user/signup");
+
 });
 
-const cookieParser = require('cookie-parser');
-app.use(cookieParser());
 
-app.post("/sign_up", function(req,res,next){
+
+app.post("/user/sign_up", function(req,res,next){
+
   let body = req.body;
-  console.log("sign in");
 
-  models.user.create({
-    name: body.userName,
-    email: body.userEmail,
-    password: body.password
+  let inputPassword = body.password;
+  let salt = Math.round((new Date().valueOf()*Math.random())) + "";
+  let hashPassword = crypto.createHash("sha512").update(inputPassword+salt).digest("hex");
+  
+  let result = models.user.create({
+    id: body.id,
+    nickName: body.nickName,
+    email: body.email,
+    password: hashPassword,
+    age: body.age,
+    salt: salt,
+    mbti_idx: 1,
   })
-  .then( result => {
-    res.redirect("/users/sign_up");
-  })
-  .catch( err => {
-    console.log(err)
-  })
+
+  res.redirect("/user/sign_up");
 })
 
 app.listen(port, () => {

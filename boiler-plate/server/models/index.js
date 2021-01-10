@@ -71,8 +71,10 @@ db.user_has_board.belongsTo(db.board, {foreignKey:'board_idx', targetKey: "idx"}
 db.board.hasMany(db.board_post, {foreignKey: 'board_idx', sourceKey:"idx"});
 db.board_post.belongsTo(db.user, {foreignKey:'board_idx', targetKey: "idx"});
 
-db.user.hasMany(db.random_chat_matching, {foreignKey: 'user_idx', sourceKey:"idx"});
-db.random_chat_matching.belongsTo(db.user, {foreignKey:'user_idx', targetKey: "idx"});
+db.user.hasMany(db.random_chat_matching, {foreignKey: 'user_idx_first', sourceKey:"idx"});
+db.random_chat_matching.belongsTo(db.user, {foreignKey:'user_idx_first', targetKey: "idx"});
+db.user.hasMany(db.random_chat_matching, {foreignKey: 'user_idx_second', sourceKey:"idx"});
+db.random_chat_matching.belongsTo(db.user, {foreignKey:'user_idx_second', targetKey: "idx"});
 db.random_chat_matching.hasMany(db.random_chat_message, {foreignKey: 'matching_idx', sourceKey:"idx"});
 db.random_chat_message.belongsTo(db.random_chat_matching, {foreignKey:'matching_idx', targetKey: "idx"});
 

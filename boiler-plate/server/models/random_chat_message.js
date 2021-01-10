@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class user extends Model {
+  class RandomChatMessage extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  user.init({
+  RandomChatMessage.init({
     idx: {
       allowNull: false,
       autoIncrement: true,
@@ -28,5 +28,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Random_chat_message'
   });
-  return user;
+  return RandomChatMessage;
 };

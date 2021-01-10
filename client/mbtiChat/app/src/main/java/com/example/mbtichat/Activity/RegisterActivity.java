@@ -139,16 +139,17 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void requestRegister(String id, String name, String email, String password, String phone){
         //url 요청주소 넣는 editText를 받아 url만들기
-        String url = "http://192.168.200.106:3000/api/users/register";
+        String url = "http://192.168.200.135:3000/user/sign_up";
 
         //JSON형식으로 데이터 통신을 진행합니다!
         JSONObject registerJson = new JSONObject();
         try {
             //입력해둔 edittext의 id와 pw값을 받아와 put해줍니다 : 데이터를 json형식으로 바꿔 넣어주었습니다.
             registerJson.put("id", id);
-            registerJson.put("name",name);
+            registerJson.put("nickName",name);
             registerJson.put("email",email);
             registerJson.put("phone",phone);
+            registerJson.put("age",21);
             registerJson.put("password",password);
             //String jsonString = testjson.toString(); //완성된 json 포맷
 
