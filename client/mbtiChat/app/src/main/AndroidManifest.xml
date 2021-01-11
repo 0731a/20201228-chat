@@ -28,6 +28,7 @@
         <activity android:name=".Activity.FindUserInfoActivity">
         </activity>
         <activity android:name=".Activity.MbtiTestActivity" />
+        <activity android:name=".Activity.KnowMbtiCheckBeforeRegisterActivity" />
     </application>
 
 </manifest>
