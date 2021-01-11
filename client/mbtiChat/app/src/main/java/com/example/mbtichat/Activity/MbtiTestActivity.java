@@ -53,17 +53,7 @@ public class MbtiTestActivity extends AppCompatActivity {
 
             }
         });
-
-        before.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if( page == 0 ) return;
-                page--;
-                questionAdapter.setQuestions(page);
-                questionAdapter.notifyDataSetChanged();
-            }
-        });
-
+        
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
