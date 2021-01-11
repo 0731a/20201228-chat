@@ -98,5 +98,13 @@ public class MbtiTestAdapter extends BaseAdapter {
         }
     }
 
+    public boolean allQuestionsComplete(int page){
+        for( int i= page*9; i < page*9 + 9 && i < mbtiTest.questionList.size() ; i++ ){
+            if( mbtiTest.questionList.get(i).getAnswer() == 0 ) return false;
+        }
+
+        return true;
+    }
+
 
 }
