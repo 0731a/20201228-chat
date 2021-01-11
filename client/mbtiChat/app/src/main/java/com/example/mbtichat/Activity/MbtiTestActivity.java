@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,6 +42,10 @@ public class MbtiTestActivity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if( !questionAdapter.allQuestionsComplete(page) ){
+                    Toast.makeText( getApplicationContext(),"아직 답변되지 않은 질문이 존재합니다.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if( page == MaxPage ) return;
                 page++;
                 questionAdapter.setQuestions(page);
