@@ -43,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         id = (EditText)findViewById(R.id.id);
-        name = (EditText)findViewById(R.id.name);
+        name = (EditText)findViewById(R.id.nickName);
         email = (EditText)findViewById(R.id.email);
         password = (EditText)findViewById(R.id.password);
         passwordConfirm = (EditText) findViewById(R.id.passwordConfirm);

@@ -41,7 +41,7 @@ public class ListItemAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.listview_item, parent, false);
         }
 
-        TextView nameText = convertView.findViewById(R.id.name);
+        TextView nameText = convertView.findViewById(R.id.nickName);
         TextView phoneText = convertView.findViewById(R.id.phone);
 
         nameText.setText(listItem.getName());
