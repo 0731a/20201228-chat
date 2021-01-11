@@ -27,9 +27,8 @@ public class MbtiTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mbtitest);
 
-        Button next = (Button) findViewById(R.id.next);
-        Button before = (Button) findViewById(R.id.before);
-        Button submit  = (Button) findViewById(R.id.submit);
+        final Button next = (Button) findViewById(R.id.next);
+        final Button submit  = (Button) findViewById(R.id.submit);
         questionListView = findViewById(R.id.questions);
 
         questionAdapter = new MbtiTestAdapter();
@@ -46,14 +45,16 @@ public class MbtiTestActivity extends AppCompatActivity {
                     Toast.makeText( getApplicationContext(),"아직 답변되지 않은 질문이 존재합니다.", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if( page == MaxPage ) return;
+                if( page == MaxPage ){
+                    submit.setVisibility(View.VISIBLE);
+                }
                 page++;
                 questionAdapter.setQuestions(page);
                 questionAdapter.notifyDataSetChanged();
 
             }
         });
-        
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
