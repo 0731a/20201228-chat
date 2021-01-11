@@ -4,6 +4,90 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MBTI" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:id="@+id/Mbti1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/MbtiE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="E" />
+
+            <RadioButton
+                android:id="@+id/MbtiI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/Mbti2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/MbtiS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="S" />
+
+            <RadioButton
+                android:id="@+id/MbtiN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="N" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/Mbti3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/MbtiF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="F" />
+
+            <RadioButton
+                android:id="@+id/MbtiT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="T" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/Mbti4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/MbtiP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="P" />
+
+            <RadioButton
+                android:id="@+id/MbtiJ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="J" />
+        </RadioGroup>
+    </LinearLayout>
+
     <EditText
         android:id="@+id/id"
         android:layout_width="match_parent"
