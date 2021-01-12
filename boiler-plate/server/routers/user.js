@@ -9,7 +9,7 @@ router.get('/', function(req,res,next){
 
 router.post('/DuplicateId', function(req,res){
   console.log('DuplicateId');
-    models.User.findOne({where:{id:req.body.id}})
+    models.user.findOne({where:{id:req.body.id}})
     .then( function(data){
         if( (data== null || data == undefined) === false)
           res.json({result:true, message:"이미 사용중인 아이디 입니다."});

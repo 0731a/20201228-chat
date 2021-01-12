@@ -84,7 +84,7 @@ public class MbtiTest {
         }
     }
 
-    public void getResult(){
+    public String getResult(){
         String result = "";
         int eCount = 0;
         int sCount = 0;
@@ -124,7 +124,10 @@ public class MbtiTest {
         else result += "P";
 
         Log.d("result",result+" 결과 입니다. ");
+        return result;
 
     }
+
+
 
 }

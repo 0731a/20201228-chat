@@ -12,14 +12,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // application/json파일을 분석해서 가져올수 있게 함
 app.use(bodyParser.json());
 
+app.use('/user',require('./routers/user'));
+app.use('/mbti',require('./routers/mbti'));
 
 
 
 console.log("server start");
-/*
+
 const sequelize = require('./models').sequelize;
-sequelize.sync();
-*/
+sequelize.sync({force : true});
+
 
 
 

@@ -37,8 +37,11 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+//db.mbti = require('./mbti')(sequelize,Sequelize);
+db.mbti_type = require('./mbti_type')(sequelize,Sequelize);
+
 db.user = require('./user')(sequelize,Sequelize);
-db.mbti = require('./mbti')(sequelize,Sequelize);
+
 db.user_has_board = require('./user_has_board')(sequelize,Sequelize);
 
 db.board = require('./board')(sequelize,Sequelize);
@@ -54,8 +57,10 @@ db.question_chat_answer = require('./question_chat_answer')(sequelize,Sequelize)
 
 // 포함 관계 
 
-db.mbti.hasMany(db.user, {foreignKey: 'mbti_idx', sourceKey:"idx"});
-db.user.belongsTo(db.mbti, {foreignKey:'mbti_idx', targetKey: "idx"});
+//db.mbti.hasMany(db.user, {foreignKey: 'mbti_idx', sourceKey:"idx"});
+//db.user.belongsTo(db.mbti, {foreignKey:'mbti_idx', targetKey: "idx"});
+db.mbti_type.hasMany(db.user, {foreignKey: 'mbti_type_idx', sourceKey:"idx"});
+db.user.belongsTo(db.mbti_type, {foreignKey:'mbti_type_idx', targetKey: "idx"});
 
 db.question_chat_list.hasMany(db.question_chat_answer, {foreignKey: 'question_idx', sourceKey:"idx"});
 db.question_chat_answer.belongsTo(db.question_chat_list, {foreignKey:'question_idx', targetKey: "idx"});
