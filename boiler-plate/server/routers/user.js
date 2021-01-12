@@ -1,6 +1,6 @@
 const crypto = require('crypto');
-const express = require('express');
-const router = express.Router();
+let express = require('express');
+let router = express.Router();
 const models = require('../models');
 
 router.get('/', function(req,res,next){
@@ -8,6 +8,7 @@ router.get('/', function(req,res,next){
 });
 
 router.post('DuplicateId', function(req,res){
+  console.log('DuplicateId');
     models.member.findOne({where:{id:req.body.id}})
     .then( function(data){
         if( (data== null || data == undefined) === false)
@@ -31,3 +32,5 @@ router.post('DuplicateEmail', function(req,res){
 router.post('register', function(req,res){
 
 });
+
+module.exports = router;

@@ -96,6 +96,12 @@
         android:inputType="textPersonName"
         android:text="아이디" />
 
+    <TextView
+        android:id="@+id/idConfirmTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
     <Button
         android:id="@+id/idConfirm"
         android:layout_width="match_parent"
@@ -131,6 +137,12 @@
         android:inputType="textEmailAddress"
         android:text="이메일" />
 
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
 
     <Button
         android:id="@+id/emailConfirm"

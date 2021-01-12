@@ -21,15 +21,26 @@ const sequelize = require('./models').sequelize;
 sequelize.sync();
 */
 
-app.get('/user/sign_up', async function(req, res, next) {
+app.get('/sign_up', async function(req, res, next) {
   console.log("sign in");
-  res.render("user/signup");
+  res.render("signup");
 
+});
+
+app.post('/user/DuplicateId', function(req,res){
+  console.log('DuplicateId');
+    models.User.findOne({where:{id:req.body.id}})
+    .then( function(data){
+        if( (data== null || data == undefined) === false)
+          res.json({result:true, message:"이미 사용중인 아이디 입니다."});
+        else
+          res.json({result:false, message:"이미 사용중인 아이디 입니다."});
+    })
 });
 
 
 
-app.post("/user/sign_up", function(req,res,next){
+app.post("/sign_up", function(req,res,next){
 
   let body = req.body;
 
@@ -47,7 +58,7 @@ app.post("/user/sign_up", function(req,res,next){
     mbti_idx: 1,
   })
 
-  res.redirect("/user/sign_up");
+  res.redirect("/sign_up");
 })
 
 app.listen(port, () => {
