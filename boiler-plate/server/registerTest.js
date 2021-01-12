@@ -26,7 +26,7 @@ app.get('/sign_up', async function(req, res, next) {
   res.render("signup");
 
 });
-
+/*
 app.post('/user/DuplicateId', function(req,res){
   console.log('DuplicateId');
     models.User.findOne({where:{id:req.body.id}})
@@ -37,6 +37,7 @@ app.post('/user/DuplicateId', function(req,res){
           res.json({result:false, message:"이미 사용중인 아이디 입니다."});
     })
 });
+*/
 
 
 

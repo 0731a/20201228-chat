@@ -7,14 +7,14 @@ router.get('/', function(req,res,next){
     res.render('user');
 });
 
-router.post('DuplicateId', function(req,res){
+router.post('/DuplicateId', function(req,res){
   console.log('DuplicateId');
-    models.member.findOne({where:{id:req.body.id}})
+    models.User.findOne({where:{id:req.body.id}})
     .then( function(data){
         if( (data== null || data == undefined) === false)
           res.json({result:true, message:"이미 사용중인 아이디 입니다."});
         else
-          res.json({result:false, message:"이미 사용중인 아이디 입니다."});
+          res.json({result:false, message:"사용 가능한 아이디 입니다."});
     })
 });
 
