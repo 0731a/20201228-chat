@@ -58,7 +58,6 @@ public class RegisterActivity extends AppCompatActivity {
         colorWarning = ContextCompat.getColor(this,R.color.colorWarning);
         colorOk = ContextCompat.getColor(this,R.color.colorOk);
 
-        //버튼이 클릭되면 여기 리스너로 옴
         emailConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

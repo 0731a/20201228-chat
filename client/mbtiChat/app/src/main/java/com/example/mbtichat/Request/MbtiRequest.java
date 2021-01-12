@@ -21,7 +21,7 @@ public class MbtiRequest {
     public static int getIdxByType(String mbti, Context context) {
         //url 요청주소 넣는 editText를 받아 url만들기
         String url = Config.IP_ADDRESS + "/mbti/getIdxByType";
-        int result = -1;
+        final int[] result = {-1};
 
         JSONObject testjson = new JSONObject();
         try {
@@ -38,7 +38,7 @@ public class MbtiRequest {
                     try {
                         Log.d("Test", "데이터전송 성공");
                         JSONObject jsonObject = new JSONObject(response.toString());
-                        result = Integer.parseInt(jsonObject.getString("idx"));
+                        result[0] = Integer.parseInt(jsonObject.getString("idx"));
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -59,7 +59,7 @@ public class MbtiRequest {
             e.printStackTrace();
         }
 
-        return result;
+        return result[0];
     }
 }
 

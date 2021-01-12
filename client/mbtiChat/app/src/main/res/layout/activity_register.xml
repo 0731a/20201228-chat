@@ -96,6 +96,12 @@
         android:inputType="textPersonName"
         android:text="아이디" />
 
+    <Button
+        android:id="@+id/idConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="아이디 중복 확인" />
+
     <EditText
         android:id="@+id/nickName"
         android:layout_width="match_parent"
