@@ -8,6 +8,8 @@ const mysqlDbConnection = require('./db/db_con')();
 const dbConnection = mysqlDbConnection.init();
 mysqlDbConnection.test_open(dbConnection);
 
+app.use('/user',require('./routers/user'));
+
 app.get('/api/hello', (req, res) => {
   res.send('안녕하세요~');
 });
