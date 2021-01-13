@@ -79,15 +79,13 @@ public class PublicChatActivity extends AppCompatActivity {
         }
     }
 
-    public void requestSetChats(String type){
+    public void requestSetChats(){
         //url 요청주소 넣는 editText를 받아 url만들기
         String url = Config.IP_ADDRESS+"/mbti/getMbtiIdxByType";
 
         //JSON형식으로 데이터 통신을 진행합니다!
         JSONObject testjson = new JSONObject();
-        try {
-            //입력해둔 edittext의 id와 pw값을 받아와 put해줍니다 : 데이터를 json형식으로 바꿔 넣어주었습니다.
-            testjson.put("type", type);
+
 
             //이제 전송해볼까요?
             final RequestQueue requestQueue = Volley.newRequestQueue(PublicChatActivity.this);
@@ -121,9 +119,7 @@ public class PublicChatActivity extends AppCompatActivity {
             jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             requestQueue.add(jsonObjectRequest);
             Log.d("Test","요청 보냄");
-            //
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
+
     }
 }
