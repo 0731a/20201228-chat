@@ -20,7 +20,7 @@ app.use('/mbti',require('./routers/mbti'));
 console.log("server start");
 
 const sequelize = require('./models').sequelize;
-sequelize.sync({force : true});
+sequelize.sync();
 
 
 
