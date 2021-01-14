@@ -5,7 +5,7 @@ import java.util.Date;
 public class RandomChatMessage {
     int matching_idx;
     String text;
-    Date created_Time;
+    Date created_date;
 
     public int getMatching_idx() {
         return matching_idx;
@@ -23,11 +23,11 @@ public class RandomChatMessage {
         this.text = text;
     }
 
-    public Date getCreated_Time() {
-        return created_Time;
+    public Date getCreated_date() {
+        return created_date;
     }
 
-    public void setCreated_Time(Date created_Time) {
-        this.created_Time = created_Time;
+    public void setCreated_date(Date created_date) {
+        this.created_date = created_date;
     }
 }
