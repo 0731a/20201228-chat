@@ -18,7 +18,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mbtichat.Adapter.MbtiTestAdapter;
 import com.example.mbtichat.R;
-import com.example.mbtichat.Service.MbtiTest;
+import com.example.mbtichat.Service.MbtiTestService;
 import com.example.mbtichat.Util.Config;
 
 import org.json.JSONException;
@@ -30,7 +30,7 @@ public class MbtiTestActivity extends AppCompatActivity {
     ListView questionListView;
     MbtiTestAdapter questionAdapter;
     ArrayList<Integer> result;
-    MbtiTest mbtiTest;
+    MbtiTestService mbtiTest;
     int page = 0;
     int MaxPage =  4;
 
@@ -44,7 +44,7 @@ public class MbtiTestActivity extends AppCompatActivity {
         questionListView = findViewById(R.id.questions);
 
         questionAdapter = new MbtiTestAdapter();
-        mbtiTest =  new MbtiTest();
+        mbtiTest =  new MbtiTestService();
         mbtiTest.setTxt(this);
         questionAdapter.setMbtiTest(mbtiTest);
         questionAdapter.setQuestions(page);

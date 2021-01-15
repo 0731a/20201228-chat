@@ -12,16 +12,16 @@ import android.widget.TextView;
 
 import com.example.mbtichat.Model.MbtiQuestionModel;
 import com.example.mbtichat.R;
-import com.example.mbtichat.Service.MbtiTest;
+import com.example.mbtichat.Service.MbtiTestService;
 
 import java.util.ArrayList;
 
 public class MbtiTestAdapter extends BaseAdapter {
-    MbtiTest mbtiTest = null;
+    MbtiTestService mbtiTest = null;
     ArrayList<MbtiQuestionModel> items = new ArrayList<MbtiQuestionModel>();
     Context context;
 
-    public void setMbtiTest(MbtiTest mbtiTest){
+    public void setMbtiTest(MbtiTestService mbtiTest){
         this.mbtiTest = mbtiTest;
     }
     @Override

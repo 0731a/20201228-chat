@@ -13,12 +13,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class MbtiTest {
+public class MbtiTestService {
     private ReadTxt readTxt;
     public static int maxPageLength = 4;
     public static ArrayList<MbtiQuestionModel> questionList = new ArrayList<MbtiQuestionModel>();
 
-    public MbtiTest(){
+    public MbtiTestService(){
 
     }
 
