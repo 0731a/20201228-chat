@@ -15,20 +15,20 @@ router.get('/login', function(req, res, next) {
 router.post("/login", async function(req,res,next){
   let body = req.body;
 
-  let result = await models.user.findOne({ where: { email : body.id } });
+  let result = await models.user.findOne({ where: { id: body.id } });
 
   let dbPassword = result.dataValues.password;
   let inputPassword = body.password;
   let salt = result.dataValues.salt;
   let hashPassword = crypto.createHash("sha512").update(inputPassword + salt).digest("hex");
-s
+
   if(dbPassword === hashPassword){
       console.log("비밀번호 일치");
-      res.redirect("/user");
+      res.json({result:true, message:"로그인 성공"});
   }
   else{
       console.log("비밀번호 불일치");
-      res.redirect("/user/login");
+      res.json({result:false, message:"로그인 실패"});
   }
 });
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mbtichat.R;
+import com.example.mbtichat.Util.Config;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,6 +27,8 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     TextView tvData;
+    EditText password;
+    EditText id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         tvData = (TextView)findViewById(R.id.textView);
+        id = (EditText) findViewById(R.id.id);
+        password = (EditText)findViewById(R.id.password);
         Button btn = (Button)findViewById(R.id.httpTest);
         Button join = (Button)findViewById(R.id.join);
         Button findUserInfo = (Button) findViewById(R.id.findUserInfo);
@@ -40,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                request();
+                request(id.getText().toString(), password.getText().toString());
             }
         });
         join.setOnClickListener(new View.OnClickListener() {
@@ -62,16 +68,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void request(){
+    public void request(String id, String password){
         //url 요청주소 넣는 editText를 받아 url만들기
-        String url = "http://192.168.200.106:3000/api/users/register";
+        String url = Config.IP_ADDRESS+"/user/login";
 
         //JSON형식으로 데이터 통신을 진행합니다!
         JSONObject testjson = new JSONObject();
         try {
             //입력해둔 edittext의 id와 pw값을 받아와 put해줍니다 : 데이터를 json형식으로 바꿔 넣어주었습니다.
-            testjson.put("user_id", "test");
-            testjson.put("name","yun");
+            testjson.put("id", id);
+            testjson.put("password",password);
             String jsonString = testjson.toString(); //완성된 json 포맷
 
             //이제 전송해볼까요?
@@ -88,16 +94,10 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject jsonObject = new JSONObject(response.toString());
 
                         //key값에 따라 value값을 쪼개 받아옵니다.
-                        String resultId = jsonObject.getString("approve_id");
-                        String resultPassword = jsonObject.getString("approve_pw");
+                        String result = jsonObject.getString("result");
+                        String message = jsonObject.getString("message");
 
-                        //만약 그 값이 같다면 로그인에 성공한 것입니다.
-                        if(resultId.equals("OK") & resultPassword.equals("OK")){
-
-                            //이 곳에 성공 시 화면이동을 하는 등의 코드를 입력하시면 됩니다.
-                        }else{
-                            Toast.makeText(MainActivity.this, "존재하지 않는 아이디거나 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
-                        }
+                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
 
                     } catch (Exception e) {
                         e.printStackTrace();

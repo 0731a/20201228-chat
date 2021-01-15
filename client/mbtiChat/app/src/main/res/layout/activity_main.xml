@@ -26,15 +26,15 @@
     <EditText
         android:id="@+id/id"
         android:layout_width="wrap_content"
-        android:layout_height="100px"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="아이디" />
 
     <EditText
-        android:id="@+id/pw"
+        android:id="@+id/password"
         android:layout_width="wrap_content"
-        android:layout_height="100px"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text|textPassword"
         android:text="비밀번호" />
