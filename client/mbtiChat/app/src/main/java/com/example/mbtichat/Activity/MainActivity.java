@@ -18,7 +18,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.mbtichat.Model.UserModel;
 import com.example.mbtichat.R;
+import com.example.mbtichat.Service.UserService;
 import com.example.mbtichat.Util.Config;
 
 import org.json.JSONException;
@@ -96,6 +98,19 @@ public class MainActivity extends AppCompatActivity {
                         //key값에 따라 value값을 쪼개 받아옵니다.
                         String result = jsonObject.getString("result");
                         String message = jsonObject.getString("message");
+
+                        if( result.equals("true")) {
+                            String user_id = jsonObject.getString("id");
+                            String user_idx = jsonObject.getString("idx");
+                            String user_nickname = jsonObject.getString("nickName");
+
+                            UserModel user = new UserModel();
+                            user.setId(user_id);
+                            user.setIdx(Integer.parseInt(user_idx));
+                            user.setNickName(user_nickname);
+
+                            UserService.myUser = user;
+                        }
 
                         Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
 

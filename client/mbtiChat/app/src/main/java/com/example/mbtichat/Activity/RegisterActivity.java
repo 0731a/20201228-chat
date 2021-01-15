@@ -28,11 +28,12 @@ import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
     EditText id;
-    EditText name;
+    EditText nickName;
     EditText email;
     EditText password;
     EditText passwordConfirm;
     EditText phone;
+    EditText age;
     TextView passwordConfirmResult;
 
     int colorOk;
@@ -44,11 +45,12 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         id = (EditText)findViewById(R.id.id);
-        name = (EditText)findViewById(R.id.nickName);
+        nickName = (EditText)findViewById(R.id.nickName);
         email = (EditText)findViewById(R.id.email);
         password = (EditText)findViewById(R.id.password);
         passwordConfirm = (EditText) findViewById(R.id.passwordConfirm);
         phone =  (EditText)findViewById(R.id.phone);
+        age =  (EditText)findViewById(R.id.age);
 
         passwordConfirmResult = (TextView) findViewById(R.id.passwordConfirmResult);
 
@@ -84,11 +86,12 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String idS = id.getText().toString().trim();
-                String nameS = name.getText().toString().trim();
+                String nickNameS = nickName.getText().toString().trim();
                 String emailS = email.getText().toString().trim();
                 String passwordS = password.getText().toString().trim();
                 String phoneS = phone.getText().toString().trim();
-                requestRegister(idS,nameS,emailS,passwordS,phoneS);
+                String ageS = age.getText().toString().trim();
+                requestRegister(idS,nickNameS,emailS,ageS,passwordS,phoneS);
             }
         });
 
@@ -194,7 +197,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    public void requestRegister(String id, String name, String email, String password, String phone){
+    public void requestRegister(String id, String nickName, String email, String age, String password, String phone){
         //url 요청주소 넣는 editText를 받아 url만들기
         String url = "http://192.168.200.135:3000/user/register";
 
@@ -203,12 +206,11 @@ public class RegisterActivity extends AppCompatActivity {
         try {
             //입력해둔 edittext의 id와 pw값을 받아와 put해줍니다 : 데이터를 json형식으로 바꿔 넣어주었습니다.
             registerJson.put("id", id);
-            registerJson.put("nickName",name);
+            registerJson.put("nickName",nickName);
             registerJson.put("email",email);
             registerJson.put("phone",phone);
-            registerJson.put("age",21);
+            registerJson.put("age",age);
             registerJson.put("password",password);
-            //String jsonString = testjson.toString(); //완성된 json 포맷
 
             //이제 전송해볼까요?
             final RequestQueue requestQueue = Volley.newRequestQueue(RegisterActivity.this);
