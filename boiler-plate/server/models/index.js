@@ -57,8 +57,6 @@ db.question_chat_answer = require('./question_chat_answer')(sequelize,Sequelize)
 
 // 포함 관계 
 
-//db.mbti.hasMany(db.user, {foreignKey: 'mbti_idx', sourceKey:"idx"});
-//db.user.belongsTo(db.mbti, {foreignKey:'mbti_idx', targetKey: "idx"});
 db.mbti_type.hasMany(db.user, {foreignKey: 'mbti_type_idx', sourceKey:"idx"});
 db.user.belongsTo(db.mbti_type, {foreignKey:'mbti_type_idx', targetKey: "idx"});
 

@@ -21,10 +21,12 @@ router.post("/login", async function(req,res,next){
   let inputPassword = body.password;
   let salt = result.dataValues.salt;
   let hashPassword = crypto.createHash("sha512").update(inputPassword + salt).digest("hex");
+  console.log(result);
+  console.log(result.dataValues);
 
   if(dbPassword === hashPassword){
       console.log("비밀번호 일치");
-      res.json({result:true, message:"로그인 성공"});
+      res.json({result:true, message:"로그인 성공", user, });
   }
   else{
       console.log("비밀번호 불일치");
@@ -75,7 +77,7 @@ router.post('/register', function(req,res){
     password: hashPassword,
     age: body.age,
     salt: salt,
-    mbti_idx: 1,
+    mbti_type_idx: 1,
   })
 
   res.redirect("/sign_up");

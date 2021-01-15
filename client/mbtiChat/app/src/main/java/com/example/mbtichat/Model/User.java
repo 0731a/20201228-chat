@@ -1,6 +1,11 @@
 package com.example.mbtichat.Model;
 
 public class User {
+
+    private int idx;
+    private String  nickName;
+    private String id;
+
     public int getIdx() {
         return idx;
     }
@@ -25,8 +30,6 @@ public class User {
         this.id = id;
     }
 
-    private int idx;
-    private String  nickName;
-    private String id;
+
 
 }

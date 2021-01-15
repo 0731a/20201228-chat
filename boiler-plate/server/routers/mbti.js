@@ -10,8 +10,7 @@ router.post('/getMbtiIdxByType', function(req,res,next){
 
    models.mbti_type.findOne({while:{type:req.body.type}})
    .then( function(data){
-      res.json({result:data.dataValues.type, message:"이미 사용중인 아이디 입니다."});
-
+      res.json({result:data.dataValues.type});
 })
 });
 
