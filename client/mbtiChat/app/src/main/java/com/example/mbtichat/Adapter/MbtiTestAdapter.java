@@ -10,7 +10,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.example.mbtichat.Model.MbtiQuestion;
+import com.example.mbtichat.Model.MbtiQuestionModel;
 import com.example.mbtichat.R;
 import com.example.mbtichat.Service.MbtiTest;
 
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class MbtiTestAdapter extends BaseAdapter {
     MbtiTest mbtiTest = null;
-    ArrayList<MbtiQuestion> items = new ArrayList<MbtiQuestion>();
+    ArrayList<MbtiQuestionModel> items = new ArrayList<MbtiQuestionModel>();
     Context context;
 
     public void setMbtiTest(MbtiTest mbtiTest){
@@ -42,7 +42,7 @@ public class MbtiTestAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         context = parent.getContext();
-        final MbtiQuestion listItem = items.get(position);
+        final MbtiQuestionModel listItem = items.get(position);
 
         if( convertView == null ){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -83,7 +83,7 @@ public class MbtiTestAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private void addItem(MbtiQuestion item){
+    private void addItem(MbtiQuestionModel item){
         items.add(item);
     }
 

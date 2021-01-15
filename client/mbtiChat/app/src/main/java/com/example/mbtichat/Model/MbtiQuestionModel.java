@@ -1,6 +1,6 @@
 package com.example.mbtichat.Model;
 
-public class MbtiQuestion {
+public class MbtiQuestionModel {
     private int type;
     private int index;
     private String firstQuestion;

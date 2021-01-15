@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.mbtichat.R;
-import com.example.mbtichat.Model.MbtiQuestion;
+import com.example.mbtichat.Model.MbtiQuestionModel;
 import com.example.mbtichat.Util.ReadTxt;
 
 import java.io.BufferedReader;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class MbtiTest {
     private ReadTxt readTxt;
     public static int maxPageLength = 4;
-    public static ArrayList<MbtiQuestion> questionList = new ArrayList<MbtiQuestion>();
+    public static ArrayList<MbtiQuestionModel> questionList = new ArrayList<MbtiQuestionModel>();
 
     public MbtiTest(){
 
@@ -38,7 +38,7 @@ public class MbtiTest {
         try {
             while (( line = buffreader.readLine()) != null) {
                 Log.d("line",line);
-                MbtiQuestion question = new MbtiQuestion();
+                MbtiQuestionModel question = new MbtiQuestionModel();
                 question.setAnswer(0);
                 question.setType(line.charAt(0)-'0');
                 question.setIndex(i);

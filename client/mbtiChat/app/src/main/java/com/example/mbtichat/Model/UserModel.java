@@ -1,6 +1,6 @@
 package com.example.mbtichat.Model;
 
-public class User {
+public class UserModel {
 
     private int idx;
     private String  nickName;

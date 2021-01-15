@@ -2,7 +2,7 @@ package com.example.mbtichat.Model;
 
 import java.util.Date;
 
-public class RandomChatMessage {
+public class RandomChatMessageModel {
     int matching_idx;
     String text;
     Date created_date;

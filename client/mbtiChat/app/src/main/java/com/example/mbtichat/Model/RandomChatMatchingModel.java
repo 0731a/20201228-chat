@@ -2,7 +2,7 @@ package com.example.mbtichat.Model;
 
 import java.util.Date;
 
-public class RandomChatMatching {
+public class RandomChatMatchingModel {
     Date created_date;
     Date updated_date;
     int user_idx1;

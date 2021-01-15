@@ -13,7 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.mbtichat.Model.User;
+import com.example.mbtichat.Model.UserModel;
 import com.example.mbtichat.R;
 import com.example.mbtichat.Util.Config;
 
@@ -28,7 +28,7 @@ public class PublicChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_publicchat);
     }
 
-    public void requestPost(String text, User user){
+    public void requestPost(String text, UserModel user){
         //url 요청주소 넣는 editText를 받아 url만들기
         String url = Config.IP_ADDRESS+"/mbti/getMbtiIdxByType";
 

@@ -1,4 +1,4 @@
 package com.example.mbtichat.Model;
 
-public class Board {
+public class BoardModel {
 }
