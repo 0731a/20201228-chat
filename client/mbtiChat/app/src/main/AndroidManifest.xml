@@ -29,6 +29,7 @@
         </activity>
         <activity android:name=".Activity.MbtiTestActivity" />
         <activity android:name=".Activity.KnowMbtiCheckBeforeRegisterActivity" />
+        <activity android:name=".Activity.PublicChatActivity" />
     </application>
 
 </manifest>

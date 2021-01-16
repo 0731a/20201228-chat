@@ -26,9 +26,9 @@ router.post("/login", async function(req,res,next){
 
   if(dbPassword === hashPassword){
       console.log("비밀번호 일치");
-      res.json({result:true,
+      res.json({result:"true",
           message:"로그인 성공",
-          idx: user.dataValues.idx,
+          idx: result.dataValues.idx,
           id: result.dataValues.id,
           nickName: result.dataValues.nickName });
   }

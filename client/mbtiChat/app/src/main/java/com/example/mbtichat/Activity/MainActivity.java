@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                         String message = jsonObject.getString("message");
 
                         if( result.equals("true")) {
+                            Log.d("result","로그인 성공");
                             String user_id = jsonObject.getString("id");
                             String user_idx = jsonObject.getString("idx");
                             String user_nickname = jsonObject.getString("nickName");
