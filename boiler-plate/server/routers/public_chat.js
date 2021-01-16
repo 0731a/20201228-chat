@@ -13,7 +13,7 @@ router.post('/writeMessage', function(req,res,next){
 
    models.mbti_type.findOne({while:{type:req.body.type}})
    .then( function(data){
-      res.json({result:data.dataValues.type, message:"이미 사용중인 아이디 입니다."});
+      res.json({result:"sucess"} );
 
 })
 });
@@ -21,9 +21,9 @@ router.post('/writeMessage', function(req,res,next){
 
 router.post('/getMessage', function(req,res,next){
 
-   models.mbti_type.findOne({while:{type:req.body.type}})
+   models.mbti_type.findAll({while:{type:req.body.type}})
    .then( function(data){
-      res.json({result:data.dataValues.type, message:"이미 사용중인 아이디 입니다."});
+      res.json({result:"sucess", data:dataValues});
 
 })
 });
