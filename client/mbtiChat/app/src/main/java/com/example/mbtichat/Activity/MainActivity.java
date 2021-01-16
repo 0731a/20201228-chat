@@ -42,10 +42,11 @@ public class MainActivity extends AppCompatActivity {
         password = (EditText)findViewById(R.id.password);
         Button btn = (Button)findViewById(R.id.httpTest);
         Button join = (Button)findViewById(R.id.join);
+        Button login = (Button)findViewById(R.id.login);
         Button findUserInfo = (Button) findViewById(R.id.findUserInfo);
 
         //버튼이 클릭되면 여기 리스너로 옴
-        btn.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 request(id.getText().toString(), password.getText().toString());
@@ -110,6 +111,9 @@ public class MainActivity extends AppCompatActivity {
                             user.setNickName(user_nickname);
 
                             UserService.myUser = user;
+
+                            Intent intent = new Intent(MainActivity.this, PublicChatActivity.class);
+                            startActivity(intent);
                         }
 
                         Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();

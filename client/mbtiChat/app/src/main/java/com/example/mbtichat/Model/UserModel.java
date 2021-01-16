@@ -38,6 +38,6 @@ public class UserModel {
     public void setMbti(){
         setMbti();
     }
-    
+
 
 }
