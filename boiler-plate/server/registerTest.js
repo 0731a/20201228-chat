@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 
 app.use('/user',require('./routers/user'));
 app.use('/mbti',require('./routers/mbti'));
+app.use('/mbti',require('./routers/public_chat'));
 
 
 
