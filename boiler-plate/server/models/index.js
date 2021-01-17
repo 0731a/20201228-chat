@@ -66,6 +66,9 @@ db.question_chat_answer.belongsTo(db.question_chat_list, {foreignKey:'question_i
 db.user.hasMany(db.board, {foreignKey: 'maker', sourceKey:"idx"});
 db.board.belongsTo(db.user, {foreignKey:'maker', targetKey: "idx"});
 
+db.user.hasMany(db.board_post, {foreignKey: 'writer', sourceKey:"idx"});
+db.board_post.belongsTo(db.user, {foreignKey:'writer', targetKey: "idx"});
+
 db.user.hasMany(db.user_has_board, {foreignKey: 'user_idx', sourceKey:"idx"});
 db.user_has_board.belongsTo(db.user, {foreignKey:'user_idx', targetKey: "idx"});
 db.board.hasMany(db.user_has_board, {foreignKey: 'board_idx', sourceKey:"idx"});
