@@ -11,11 +11,13 @@ router.post('/writeMessage', function(req,res,next){
     let user_idx = body.idx;
     let text = body.text;
 
-   models.mbti_type.findOne({while:{type:req.body.type}})
-   .then( function(data){
-      res.json({result:"sucess"} );
+    let result = models.public_chat.create({
+        user_idx: user_idx,
+        text: text
+      })
+    
+      res.redirect("/getMessage");
 
-})
 });
 
 
