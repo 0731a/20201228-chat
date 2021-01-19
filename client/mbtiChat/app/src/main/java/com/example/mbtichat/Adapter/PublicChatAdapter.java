@@ -8,12 +8,13 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.mbtichat.ListItem;
+import com.example.mbtichat.Model.PublicChatModel;
 import com.example.mbtichat.R;
 
 import java.util.ArrayList;
 
 public class PublicChatAdapter extends BaseAdapter {
-    ArrayList<ListItem> items = new ArrayList<ListItem>();
+    ArrayList<PublicChatModel> items = new ArrayList<PublicChatModel>();
     Context context;
 
     @Override
@@ -34,7 +35,7 @@ public class PublicChatAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         context = parent.getContext();
-        ListItem listItem = items.get(position);
+        PublicChatModel listItem = items.get(position);
 
         if( convertView == null ){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
