@@ -15,6 +15,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mbtichat.Model.UserModel;
 import com.example.mbtichat.R;
+import com.example.mbtichat.Service.UserService;
 import com.example.mbtichat.Util.Config;
 
 import org.json.JSONException;
@@ -38,6 +39,9 @@ public class PublicChatActivity extends AppCompatActivity {
             //입력해둔 edittext의 id와 pw값을 받아와 put해줍니다 : 데이터를 json형식으로 바꿔 넣어주었습니다.
             testjson.put("txt", text);
             testjson.put("user_idx", user.getIdx());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
             //이제 전송해볼까요?
             final RequestQueue requestQueue = Volley.newRequestQueue(PublicChatActivity.this);
@@ -79,13 +83,15 @@ public class PublicChatActivity extends AppCompatActivity {
         }
     }
 
-    public void requestSetChats(){
+    public void requestSetChats(String text){
         //url 요청주소 넣는 editText를 받아 url만들기
         String url = Config.IP_ADDRESS+"/publicChat/writeMessage";
 
         //JSON형식으로 데이터 통신을 진행합니다!
         JSONObject testjson = new JSONObject();
-
+        try{
+         testjson.put("text", text);
+        testjson.put("user_idx", UserService.myUser.getIdx()+"");
 
             //이제 전송해볼까요?
             final RequestQueue requestQueue = Volley.newRequestQueue(PublicChatActivity.this);

@@ -12,7 +12,7 @@ router.post('/writeMessage', function(req,res,next){
     let text = body.text;
 
     let result = models.public_chat.create({
-        user_idx: user_idx,
+        writer: user_idx,
         text: text
       })
     
