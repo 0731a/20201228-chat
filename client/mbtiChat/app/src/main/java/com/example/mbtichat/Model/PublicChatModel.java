@@ -3,25 +3,25 @@ package com.example.mbtichat.Model;
 import java.util.Date;
 
 public class PublicChatModel {
-    private Date date;
-    private String writer;
+    private String date;
+    private String nickName;
     private String mbti;
     private String text;
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
     public void setDate(Date date) {
-        this.date = date;
+        this.date = date.toString();
     }
 
-    public String getWriter() {
-        return writer;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setWriter(String writer) {
-        this.writer = writer;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public String getMbti() {

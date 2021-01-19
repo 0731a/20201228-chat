@@ -39,18 +39,23 @@ public class PublicChatAdapter extends BaseAdapter {
 
         if( convertView == null ){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.listview_item, parent, false);
+            convertView = inflater.inflate(R.layout.listview_publicchat_item, parent, false);
         }
 
-        TextView nameText = convertView.findViewById(R.id.nickName);
-        TextView phoneText = convertView.findViewById(R.id.phone);
+        TextView nickNameText = convertView.findViewById(R.id.nickName);
+        TextView timeText = convertView.findViewById(R.id.time);
+        TextView mbtiText = convertView.findViewById(R.id.mbti);
+        TextView textText = convertView.findViewById(R.id.text);
 
-        nameText.setText(listItem.getName());
-        phoneText.setText(listItem.getPhone());
+        nickNameText.setText(listItem.getNickName());
+        timeText.setText(listItem.getDate());
+        mbtiText.setText(listItem.getMbti());
+        textText.setText(listItem.getText());
+
         return convertView;
     }
 
-    public void addItem(ListItem item){
+    public void addItem(PublicChatModel item){
         items.add(item);
     }
 }
