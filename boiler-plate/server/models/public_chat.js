@@ -26,8 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'Public_chat',
-    timestamps: false
+    modelName: 'Public_chat'
   });
   return PublicChat;
 };

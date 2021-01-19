@@ -7,7 +7,6 @@ public class PublicChatModel {
     private String writer;
     private String mbti;
     private String text;
-    private String Image;
 
     public Date getDate() {
         return date;
