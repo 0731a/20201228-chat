@@ -78,30 +78,31 @@ public class PublicChatActivity extends AppCompatActivity {
             requestQueue.add(jsonObjectRequest);
             Log.d("Test","요청 보냄");
             //
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
     }
 
-    public void requestSetChats(String text){
+
+    public void requestSetChats(String text) {
         //url 요청주소 넣는 editText를 받아 url만들기
-        String url = Config.IP_ADDRESS+"/publicChat/writeMessage";
+        String url = Config.IP_ADDRESS + "/publicChat/writeMessage";
 
         //JSON형식으로 데이터 통신을 진행합니다!
         JSONObject testjson = new JSONObject();
-        try{
-         testjson.put("text", text);
-        testjson.put("user_idx", UserService.myUser.getIdx()+"");
+        try {
+            testjson.put("text", text);
+            testjson.put("user_idx", UserService.myUser.getIdx() + "");
 
+        }catch( Exception e ){
+            e.printStackTrace();
+        }
             //이제 전송해볼까요?
             final RequestQueue requestQueue = Volley.newRequestQueue(PublicChatActivity.this);
-            final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,testjson, new Response.Listener<JSONObject>() {
+            final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, testjson, new Response.Listener<JSONObject>() {
 
                 //데이터 전달을 끝내고 이제 그 응답을 받을 차례입니다.
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
-                        Log.d("Test","데이터전송 성공");
+                        Log.d("Test", "데이터전송 성공");
                         requestGetChats();
 
                     } catch (Exception e) {
@@ -118,7 +119,9 @@ public class PublicChatActivity extends AppCompatActivity {
             });
             jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             requestQueue.add(jsonObjectRequest);
-            Log.d("Test","요청 보냄");
+            Log.d("Test", "요청 보냄");
+
+
 
 
     }
