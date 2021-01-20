@@ -12,8 +12,8 @@ public class PublicChatModel {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date.toString();
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getNickName() {

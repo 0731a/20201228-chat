@@ -3,6 +3,8 @@ package com.example.mbtichat.Service;
 import com.example.mbtichat.Model.MbtiQuestionModel;
 import com.example.mbtichat.Model.PublicChatModel;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -18,20 +20,20 @@ public class PublicChatService {
     {
         try{
             JSONObject jsonObject = new JSONObject(json);
+            JSONArray chatArray = jsonObject.getJSONArray("Chats");
 
-            JSONArray movieArray = jsonObject.getJSONArray("Movies");
-
-            for(int i=0; i<movieArray.length(); i++)
+            for(int i=0; i< chatArray.length(); i++)
             {
-                JSONObject movieObject = movieArray.getJSONObject(i);
+                JSONObject publicChatJsonObject = chatArray.getJSONObject(i);
 
-                Movie movie = new Movie();
+                PublicChatModel item = new PublicChatModel();
 
-                movie.setTitle(movieObject.getString("title"));
-                movie.setGrade(movieObject.getString("grade"));
-                movie.setCategory(movieObject.getString("category"));
+                item.setText(publicChatJsonObject.getString("text"));
+                item.setMbti(publicChatJsonObject.getString("mbti"));
+                item.setDate(publicChatJsonObject.getString("date"));
+                item.setNickName(publicChatJsonObject.getString("nickName"));
 
-                movieList.add(movie);
+                publicChatList.add(item);
             }
         }catch (JSONException e) {
             e.printStackTrace();
