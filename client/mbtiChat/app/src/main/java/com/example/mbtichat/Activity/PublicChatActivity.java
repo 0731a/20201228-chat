@@ -1,7 +1,11 @@
 package com.example.mbtichat.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,22 +27,35 @@ import org.json.JSONObject;
 
 public class PublicChatActivity extends AppCompatActivity {
 
+    EditText text;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publicchat);
+
+        Button writeButton = (Button)findViewById(R.id.write);
+        text = (EditText)findViewById(R.id.text);
+
+        writeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestPost(text.getText().toString(),UserService.myUser);
+            }
+        });
     }
 
     public void requestPost(String text, UserModel user){
         //url 요청주소 넣는 editText를 받아 url만들기
-        String url = Config.IP_ADDRESS+"/mbti/getMbtiIdxByType";
+        //String url = Config.IP_ADDRESS+"/publicChat/writeMessage";
+        String url = Config.IP_ADDRESS+"/publicChat/getMessage";
 
         //JSON형식으로 데이터 통신을 진행합니다!
         JSONObject testjson = new JSONObject();
         try {
             //입력해둔 edittext의 id와 pw값을 받아와 put해줍니다 : 데이터를 json형식으로 바꿔 넣어주었습니다.
-            testjson.put("txt", text);
-            testjson.put("user_idx", user.getIdx());
+            testjson.put("text", text);
+            testjson.put("idx", user.getIdx());
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -60,7 +77,7 @@ public class PublicChatActivity extends AppCompatActivity {
                         String resultIdx = jsonObject.getString("result");
                         Log.d("result",resultIdx);
 
-                        requestSetChats();
+                        //requestSetChats();
 
                     } catch (Exception e) {
                         e.printStackTrace();
