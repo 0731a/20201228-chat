@@ -14,8 +14,7 @@ router.post('/writeMessage', function(req,res,next){
     let result = models.public_chat.create({
         writer: user_idx,
         text: text
-      })
-    
+      })    
       res.redirect("/getMessage");
 
 });
@@ -23,9 +22,16 @@ router.post('/writeMessage', function(req,res,next){
 
 router.post('/getMessage', function(req,res,next){
 
-   models.mbti_type.findAll({while:{type:req.body.type}})
+   models.mbti_type.findAll({  include: [User]})
    .then( function(data){
-      res.json({result:"sucess", data:dataValues});
+      console.log(data.dataValues);
+      res.json({result:"sucess", data:data.dataValues});
+
+})
+    models.mbti_type.findAll({  include: [mbti_type]})
+   .then( function(data){
+      console.log(data.dataValues);
+      res.json({result:"sucess", data:data.dataValues});
 
 })
 });
