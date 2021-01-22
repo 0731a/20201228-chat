@@ -21,10 +21,11 @@ app.use('/publicChat',require('./routers/public_chat'));
 
 
 console.log("server start");
-
+/*
 const sequelize = require('./models').sequelize;
 sequelize.sync();  //force: true}
 
+*/
 
 
 
