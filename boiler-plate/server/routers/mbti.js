@@ -14,5 +14,4 @@ router.post('/getMbtiIdxByType', function(req,res,next){
 })
 });
 
-
 module.exports = router;
