@@ -63,6 +63,9 @@ db.user.belongsTo(db.mbti_type, {foreignKey:'mbti_type_idx', targetKey: "idx"});
 db.question_chat_list.hasMany(db.question_chat_answer, {foreignKey: 'question_idx', sourceKey:"idx"});
 db.question_chat_answer.belongsTo(db.question_chat_list, {foreignKey:'question_idx', targetKey: "idx"});
 
+db.user.hasMany(db.question_chat_answer, {foreignKey: 'user_idx', sourceKey:"idx"});
+db.question_chat_answer.belongsTo(db.question_chat_list, {foreignKey:'user_idx', targetKey: "idx"});
+
 db.user.hasMany(db.public_chat, {foreignKey: 'writer', sourceKey:"idx"});
 db.public_chat.belongsTo(db.user, {foreignKey:'writer', targetKey: "idx"});
 
