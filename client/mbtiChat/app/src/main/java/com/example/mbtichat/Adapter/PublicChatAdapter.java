@@ -58,4 +58,8 @@ public class PublicChatAdapter extends BaseAdapter {
     public void addItem(PublicChatModel item){
         items.add(item);
     }
+
+    public void resetItem(){
+        items.clear();
+    }
 }

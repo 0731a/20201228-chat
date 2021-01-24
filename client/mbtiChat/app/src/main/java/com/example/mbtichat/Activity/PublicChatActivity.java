@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,17 +18,19 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.mbtichat.Adapter.PublicChatAdapter;
 import com.example.mbtichat.Model.UserModel;
 import com.example.mbtichat.R;
+import com.example.mbtichat.Service.PublicChatService;
 import com.example.mbtichat.Service.UserService;
 import com.example.mbtichat.Util.Config;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class PublicChatActivity extends AppCompatActivity {
-
+    PublicChatAdapter publicChatAdapter;
     EditText text;
+    ListView publicChatListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,11 @@ public class PublicChatActivity extends AppCompatActivity {
 
         Button writeButton = (Button)findViewById(R.id.write);
         text = (EditText)findViewById(R.id.text);
+        publicChatListView = findViewById(R.id.listView);
+
+        publicChatAdapter = new PublicChatAdapter();
+        requestGetChats();
+        publicChatListView.setAdapter(publicChatAdapter);
 
         writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,8 +55,8 @@ public class PublicChatActivity extends AppCompatActivity {
 
     public void requestPost(String text, UserModel user){
         //url 요청주소 넣는 editText를 받아 url만들기
-        //String url = Config.IP_ADDRESS+"/publicChat/writeMessage";
-        String url = Config.IP_ADDRESS+"/publicChat/getMessage";
+        String url = Config.IP_ADDRESS+"/publicChat/writeMessage";
+
 
         //JSON형식으로 데이터 통신을 진행합니다!
         JSONObject testjson = new JSONObject();
@@ -69,15 +77,8 @@ public class PublicChatActivity extends AppCompatActivity {
                 public void onResponse(JSONObject response) {
                     try {
                         Log.d("Test","데이터전송 성공");
+                        //PublicChatService.jsonParsing( response.toString(),publicChatAdapter);
 
-                        //받은 json형식의 응답을 받아
-                        JSONObject jsonObject = new JSONObject(response.toString());
-
-                        //key값에 따라 value값을 쪼개 받아옵니다.
-                        String resultIdx = jsonObject.getString("result");
-                        Log.d("result",resultIdx);
-
-                        //requestSetChats();
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -95,18 +96,17 @@ public class PublicChatActivity extends AppCompatActivity {
             requestQueue.add(jsonObjectRequest);
             Log.d("Test","요청 보냄");
             //
+            requestGetChats();
     }
 
 
-    public void requestSetChats(String text) {
+    public void requestGetChats() {
         //url 요청주소 넣는 editText를 받아 url만들기
-        String url = Config.IP_ADDRESS + "/publicChat/writeMessage";
+        String url = Config.IP_ADDRESS+"/publicChat/getMessage";
 
         //JSON형식으로 데이터 통신을 진행합니다!
         JSONObject testjson = new JSONObject();
         try {
-            testjson.put("text", text);
-            testjson.put("user_idx", UserService.myUser.getIdx() + "");
 
         }catch( Exception e ){
             e.printStackTrace();
@@ -119,8 +119,8 @@ public class PublicChatActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
-                        Log.d("Test", "데이터전송 성공");
-                        requestGetChats();
+                        Log.d("Test", response.toString());
+                        PublicChatService.jsonParsing( response.toString(),publicChatAdapter);
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -143,47 +143,5 @@ public class PublicChatActivity extends AppCompatActivity {
 
     }
 
-    public void requestGetChats(){
-        //url 요청주소 넣는 editText를 받아 url만들기
-        String url = Config.IP_ADDRESS+"/publicChat/writeMessage";
 
-        //JSON형식으로 데이터 통신을 진행합니다!
-        JSONObject testjson = new JSONObject();
-
-
-        //이제 전송해볼까요?
-        final RequestQueue requestQueue = Volley.newRequestQueue(PublicChatActivity.this);
-        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,testjson, new Response.Listener<JSONObject>() {
-
-            //데이터 전달을 끝내고 이제 그 응답을 받을 차례입니다.
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    Log.d("Test","데이터전송 성공");
-
-                    //받은 json형식의 응답을 받아
-                    JSONObject jsonObject = new JSONObject(response.toString());
-
-                    //key값에 따라 value값을 쪼개 받아옵니다.
-                    String resultIdx= jsonObject.getString("data");
-                    Log.d("result",resultIdx);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            //서버로 데이터 전달 및 응답 받기에 실패한 경우 아래 코드가 실행됩니다.
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                Toast.makeText(PublicChatActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        requestQueue.add(jsonObjectRequest);
-        Log.d("Test","요청 보냄");
-
-
-    }
 }

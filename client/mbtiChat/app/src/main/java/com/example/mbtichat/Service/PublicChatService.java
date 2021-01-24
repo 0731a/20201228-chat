@@ -1,5 +1,6 @@
 package com.example.mbtichat.Service;
 
+import com.example.mbtichat.Adapter.PublicChatAdapter;
 import com.example.mbtichat.Model.MbtiQuestionModel;
 import com.example.mbtichat.Model.PublicChatModel;
 
@@ -16,11 +17,13 @@ public class PublicChatService {
 
     }
 
-    private void jsonParsing(String json)
+    public static void jsonParsing(String json, PublicChatAdapter adapter)
     {
+        adapter.resetItem();
+
         try{
             JSONObject jsonObject = new JSONObject(json);
-            JSONArray chatArray = jsonObject.getJSONArray("Chats");
+            JSONArray chatArray = jsonObject.getJSONArray("data");
 
             for(int i=0; i< chatArray.length(); i++)
             {
@@ -30,13 +33,15 @@ public class PublicChatService {
 
                 item.setText(publicChatJsonObject.getString("text"));
                 item.setMbti(publicChatJsonObject.getString("mbti"));
-                item.setDate(publicChatJsonObject.getString("date"));
+                item.setDate(publicChatJsonObject.getString("createdAt"));
                 item.setNickName(publicChatJsonObject.getString("nickName"));
 
-                publicChatList.add(item);
+                adapter.addItem(item);
             }
         }catch (JSONException e) {
             e.printStackTrace();
         }
+
+        adapter.notifyDataSetChanged();
     }
 }
