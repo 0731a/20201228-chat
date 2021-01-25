@@ -105,7 +105,7 @@
     </RadioGroup>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -113,7 +113,7 @@
         android:text="Name" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/send"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Button" />
