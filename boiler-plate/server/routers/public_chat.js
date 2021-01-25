@@ -17,7 +17,7 @@ router.post('/writeMessage', function(req,res,next){
         writer: user_idx,
         text: text
       })    
-      res.redirect("/getMessage");
+      res.redirect("/publicChat/getMessage");
 
 });
 
