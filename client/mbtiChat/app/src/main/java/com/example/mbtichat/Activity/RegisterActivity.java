@@ -199,7 +199,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void requestRegister(String id, String nickName, String email, String age, String password, String phone){
         //url 요청주소 넣는 editText를 받아 url만들기
-        String url = "http://192.168.200.135:3000/user/register";
+        String url = Config.IP_ADDRESS+"/user/register";
 
         //JSON형식으로 데이터 통신을 진행합니다!
         JSONObject registerJson = new JSONObject();

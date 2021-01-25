@@ -113,8 +113,13 @@ public class MainActivity extends AppCompatActivity {
 
                             UserService.myUser = user;
 
+                            /*
                             Intent intent = new Intent(MainActivity.this, PublicChatActivity.class);
                             startActivity(intent);
+                            */
+                            Intent intent = new Intent(MainActivity.this, randChatMatchingActivity.class);
+                            startActivity(intent);
+
                         }
 
                         Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
