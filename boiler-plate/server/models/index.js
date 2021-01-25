@@ -89,6 +89,8 @@ db.user.hasMany(db.random_chat_matching, {foreignKey: 'user_idx_second', sourceK
 db.random_chat_matching.belongsTo(db.user, {foreignKey:'user_idx_second', targetKey: "idx"});
 db.random_chat_matching.hasMany(db.random_chat_message, {foreignKey: 'matching_idx', sourceKey:"idx"});
 db.random_chat_message.belongsTo(db.random_chat_matching, {foreignKey:'matching_idx', targetKey: "idx"});
+db.user.hasMany(db.random_chat_message, {foreignKey: 'writer', sourceKey:"idx"});
+db.random_chat_message.belongsTo(db.user, {foreignKey:'writer', targetKey: "idx"});
 
 
 
