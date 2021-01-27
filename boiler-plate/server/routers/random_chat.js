@@ -68,4 +68,20 @@ router.post('/sendMessage', function(req,res,next){
     // 상대 방에게 알람 필요
 });
 
+router.post('/getMessage', function(req,res,next){
+    console.log(req.body);
+    models.user.findAll({ where:{ [Op.or]: [{writer: req.body.myIdx}, {user_idx_second: req.body.otherIdx}] }}).then((encounter) => {
+        dataList = []
+        console.log(encounter);
+
+        encounter.forEach(function(userItem){
+            idxList.push(userItem.dataValues);
+        });
+
+        res.json({data:dataList});
+    }); 
+
+    // 상대 방에게 알람 필요
+});
+
 module.exports = router;
