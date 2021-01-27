@@ -44,7 +44,7 @@ router.post('/randMessage', function(req,res,next){
 
 router.post('/myChatList', function(req,res,next){
     console.log(req.body);
-    models.random_chat_matching.findAndCountAll({[Op.or]: [{user_idx_first: req.body.id}, {user_idx_second: req.body.id}]})
+    models.random_chat_matching.findAndCountAll({ [Op.or]: [{user_idx_first: req.body.id}, {user_idx_second: req.body.id}]})
     .then( function(data){
         console.log(data.rows);
         if( (data== null || data == undefined) === false)
@@ -56,5 +56,16 @@ router.post('/myChatList', function(req,res,next){
     })
 });
 
+
+router.post('/sendMessage', function(req,res,next){
+    console.log(req.body);
+    let chatResult = models.random_chat_message.create({
+        writer: req.body.myIdx,
+        text: req.body.text,
+        matching_idx: req.body.otherIdx
+    })
+
+    // 상대 방에게 알람 필요
+});
 
 module.exports = router;
