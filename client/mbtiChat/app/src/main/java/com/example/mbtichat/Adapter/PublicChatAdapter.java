@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.mbtichat.ListItem;
 import com.example.mbtichat.Model.PublicChatModel;
 import com.example.mbtichat.R;
 
@@ -44,7 +43,7 @@ public class PublicChatAdapter extends BaseAdapter {
 
         TextView nickNameText = convertView.findViewById(R.id.nickName);
         TextView timeText = convertView.findViewById(R.id.time);
-        TextView mbtiText = convertView.findViewById(R.id.mbti);
+        TextView mbtiText = convertView.findViewById(R.id.writer);
         TextView textText = convertView.findViewById(R.id.text);
 
         nickNameText.setText(listItem.getNickName());
