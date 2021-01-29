@@ -34,6 +34,7 @@
         <activity android:name=".Activity.BoardActivity" />
         <activity android:name=".Activity.BoardPostActivity" />
         <activity android:name=".Activity.BoardListActivity" />
+        <activity android:name=".Activity.BoardMakeActivity" />
     </application>
 
 </manifest>
