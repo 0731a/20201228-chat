@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/publicChat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="publicChat" />
+
+    <Button
+        android:id="@+id/randomChat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RandomChat" />
+
+    <Button
+        android:id="@+id/boardList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BoardList" />
+
+    <Button
+        android:id="@+id/makeBoard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MakeBoard" />
+
+    <Button
+        android:id="@+id/myPage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="myPage" />
+</LinearLayout>

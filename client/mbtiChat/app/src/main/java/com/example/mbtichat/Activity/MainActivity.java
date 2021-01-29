@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, PublicChatActivity.class);
                             startActivity(intent);
                             */
-                            Intent intent = new Intent(MainActivity.this, randChatMatchingActivity.class);
+                            Intent intent = new Intent(MainActivity.this, TestActivity.class);
                             startActivity(intent);
 
                         }
