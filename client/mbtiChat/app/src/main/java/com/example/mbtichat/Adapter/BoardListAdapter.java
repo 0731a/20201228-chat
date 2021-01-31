@@ -1,6 +1,7 @@
 package com.example.mbtichat.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,12 +9,14 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.mbtichat.ListItem;
+import com.example.mbtichat.Model.BoardModel;
 import com.example.mbtichat.R;
+import com.example.mbtichat.Service.UserService;
 
 import java.util.ArrayList;
 
 public class BoardListAdapter  extends BaseAdapter {
-    ArrayList<ListItem> items = new ArrayList<ListItem>();
+    ArrayList<BoardModel> items = new ArrayList<BoardModel>();
     Context context;
 
     @Override
@@ -34,22 +37,33 @@ public class BoardListAdapter  extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         context = parent.getContext();
-        ListItem listItem = items.get(position);
+        final BoardModel listItem = items.get(position);
 
         if( convertView == null ){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.listview_item, parent, false);
+            convertView = inflater.inflate(R.layout.listview_boardlist_item, parent, false);
         }
 
-        TextView nameText = convertView.findViewById(R.id.nickName);
-        TextView phoneText = convertView.findViewById(R.id.phone);
+        TextView boardTitleText = convertView.findViewById(R.id.boardTitle);
+        TextView boardDescriptionText = convertView.findViewById(R.id.boardDescription);
 
-        nameText.setText(listItem.getName());
-        phoneText.setText(listItem.getPhone());
+        boardTitleText.setText(listItem.getName());
+        boardDescriptionText.setText(listItem.getDescription());
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("click", listItem.getIdx()+"idx출력 ----------------------");
+            }
+        });
         return convertView;
     }
 
-    public void addItem(ListItem item){
+    public void addItem(BoardModel item){
         items.add(item);
+    }
+
+    public void jsonParsing(String jsonString){
+
     }
 }
