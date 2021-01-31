@@ -74,9 +74,13 @@ public class BoardMakeActivity extends AppCompatActivity {
 
                         //key값에 따라 value값을 쪼개 받아옵니다.
                         String result = jsonObject.getString("result");
+                        String message = jsonObject.getString("message");
 
                         if( result.equals("true")) {
+                            Toast.makeText(BoardMakeActivity.this, message, Toast.LENGTH_SHORT).show();
                             finish();
+                        }else {
+                            Toast.makeText(BoardMakeActivity.this, message, Toast.LENGTH_SHORT).show();
                         }
 
 
