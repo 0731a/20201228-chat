@@ -10,8 +10,13 @@ import android.widget.TextView;
 
 import com.example.mbtichat.ListItem;
 import com.example.mbtichat.Model.BoardModel;
+import com.example.mbtichat.Model.PublicChatModel;
 import com.example.mbtichat.R;
 import com.example.mbtichat.Service.UserService;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -65,5 +70,33 @@ public class BoardListAdapter  extends BaseAdapter {
 
     public void jsonParsing(String jsonString){
 
+        this.resetItem();
+
+        try{
+            JSONObject jsonObject = new JSONObject(jsonString);
+            JSONArray chatArray = jsonObject.getJSONArray("data");
+
+            for(int i=0; i< chatArray.length(); i++)
+            {
+                JSONObject boardJsonObject = chatArray.getJSONObject(i);
+
+                BoardModel item = new BoardModel();
+
+                item.setName(boardJsonObject.getString("board_title"));
+                item.setIdx(Integer.getInteger(boardJsonObject.getString("board_idx")));
+                item.setDescription(boardJsonObject.getString("board_description"));
+
+                this.addItem(item);
+            }
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        this.notifyDataSetChanged();
+
+    }
+
+    public void resetItem(){
+        items.clear();
     }
 }
