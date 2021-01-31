@@ -23,7 +23,7 @@ router.post('/writeMessage', function(req,res,next){
 
 
 router.post('/getMessage', function(req,res,next){
-    console.log("getMessage");
+  console.log("getMessage");
 
    models.public_chat.findAll({  include: [{
        model: models.user,

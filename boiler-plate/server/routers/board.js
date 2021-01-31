@@ -45,11 +45,24 @@ router.post('/deleteBoard', function(req,res,next){
 
 router.post('/getBoardList', function(req,res,next){
 
-   models.mbti_type.findOne({while:{type:req.body.type}})
-   .then( function(data){
-      res.json({result:data.dataValues.type, message:"이미 사용중인 아이디 입니다."});
-
-})
+    models.board.findAll()
+    .then( function(data){
+       //console.log(data);
+       let boards = []
+ 
+       data.forEach( function(board){
+            console.log(board);
+            boards.push({
+                idx:board.dataValues.idx,
+                board_title: board.dataValues.name,
+                board_description: board.dataValues.description
+            });
+           
+       });
+ 
+ 
+       res.json({result:"sucess", data:boards});
+    });
 });
 
 router.post('/postInBoard', function(req,res,next){
