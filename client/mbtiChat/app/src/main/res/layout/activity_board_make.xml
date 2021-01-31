@@ -8,9 +8,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="게시판 이름 입력"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint="보드이름"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/boardDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="보드 설명"
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/restric"
