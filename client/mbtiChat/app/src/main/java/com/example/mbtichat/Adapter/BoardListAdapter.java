@@ -83,7 +83,7 @@ public class BoardListAdapter  extends BaseAdapter {
                 BoardModel item = new BoardModel();
 
                 item.setName(boardJsonObject.getString("board_title"));
-                item.setIdx(Integer.getInteger(boardJsonObject.getString("board_idx")));
+                item.setIdx(Integer.getInteger(boardJsonObject.getString("idx")));
                 item.setDescription(boardJsonObject.getString("board_description"));
 
                 this.addItem(item);

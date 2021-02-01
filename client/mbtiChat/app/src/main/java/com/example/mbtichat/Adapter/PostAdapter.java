@@ -7,13 +7,17 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.mbtichat.ListItem;
+import com.example.mbtichat.Model.BoardPostModel;
 import com.example.mbtichat.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 public class PostAdapter  extends BaseAdapter {
-    ArrayList<ListItem> items = new ArrayList<ListItem>();
+    ArrayList<BoardPostModel> items = new ArrayList<BoardPostModel>();
     Context context;
 
     @Override
@@ -34,22 +38,59 @@ public class PostAdapter  extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         context = parent.getContext();
-        ListItem listItem = items.get(position);
+        BoardPostModel listItem = items.get(position);
 
         if( convertView == null ){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.listview_item, parent, false);
+            convertView = inflater.inflate(R.layout.activity_board_post, parent, false);
         }
 
-        TextView nameText = convertView.findViewById(R.id.nickName);
-        TextView phoneText = convertView.findViewById(R.id.phone);
+        TextView writerText = convertView.findViewById(R.id.writer);
+        TextView mbtiText = convertView.findViewById(R.id.mbti);
+        TextView textText = convertView.findViewById(R.id.text);
+        TextView dateText = convertView.findViewById(R.id.date);
 
-        nameText.setText(listItem.getName());
-        phoneText.setText(listItem.getPhone());
+        writerText.setText(listItem.getWriter());
+        mbtiText.setText(listItem.getUser_mbti());
+        dateText.setText(listItem.getCreatedAt());
+        textText.setText(listItem.getText());
         return convertView;
     }
 
-    public void addItem(ListItem item){
+    public void addItem(BoardPostModel item){
         items.add(item);
+    }
+
+    public void jsonParsing(String jsonString){
+
+        this.resetItem();
+
+        try{
+            JSONObject jsonObject = new JSONObject(jsonString);
+            JSONArray chatArray = jsonObject.getJSONArray("data");
+
+            for(int i=0; i< chatArray.length(); i++)
+            {
+                JSONObject boardJsonObject = chatArray.getJSONObject(i);
+
+                BoardPostModel item = new BoardPostModel();
+
+                item.setWriter(boardJsonObject.getString("boardpost_writer"));
+                item.setIdx(Integer.getInteger(boardJsonObject.getString("boardpost_idx")));
+                item.setText(boardJsonObject.getString("boardpost_text"));
+                item.setText(boardJsonObject.getString("user_mbti"));
+
+                this.addItem(item);
+            }
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        this.notifyDataSetChanged();
+
+    }
+
+    public void resetItem(){
+        items.clear();
     }
 }
