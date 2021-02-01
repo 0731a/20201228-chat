@@ -107,19 +107,13 @@ router.post('/getPosts', function(req,res,next){
 
            res.json({result:"sucess", data:posts});
        });
- 
-      
+  
  
 });
 
 
-router.post('/deleteInPost', function(req,res,next){
-
-    models.mbti_type.findOne({while:{type:req.body.type}})
-    .then( function(data){
-       res.json({result:data.dataValues.type, message:"이미 사용중인 아이디 입니다."});
- 
-})
+router.post('/deletePost', function(req,res,next){
+    models.board_post.delete({where:{type:req.body.idx}});
 });
  
 
