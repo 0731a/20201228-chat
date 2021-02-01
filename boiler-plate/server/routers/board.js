@@ -83,14 +83,35 @@ router.post('/deleteInBoard', function(req,res,next){
 })
 });
 
-router.post('/postInPost', function(req,res,next){
+router.post('/getPosts', function(req,res,next){
 
-    models.mbti_type.findOne({while:{type:req.body.type}})
+    models.board_post.findAll({  include: [{
+        model: models.user,
+        attributes: ['nickName', 'mbti_type_idx'],
+        include: models.mbti_type
+    }]})
     .then( function(data){
-       res.json({result:data.dataValues.type, message:"이미 사용중인 아이디 입니다."});
+       //console.log(data);
+       let posts = [];
  
-})
+       data.forEach( function(post){
+           posts.push({
+               boardpost_writer: post.dataValues.User.nickName,
+               boardpost_idx: post.dataValues.idx,
+               boardpost_text: post.dataValues.text,
+               boardpost_createdAt: post.dataValues.createdAt,
+               user_mbti: post.dataValues.User.mbti
+           })
+
+           });
+
+           res.json({result:"sucess", data:posts});
+       });
+ 
+      
+ 
 });
+
 
 router.post('/deleteInPost', function(req,res,next){
 

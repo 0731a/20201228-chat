@@ -77,6 +77,7 @@ public class PostAdapter  extends BaseAdapter {
 
                 item.setWriter(boardJsonObject.getString("boardpost_writer"));
                 item.setIdx(Integer.getInteger(boardJsonObject.getString("boardpost_idx")));
+                item.setCreatedAt(boardJsonObject.getString("boardpost_createdAt"));
                 item.setText(boardJsonObject.getString("boardpost_text"));
                 item.setText(boardJsonObject.getString("user_mbti"));
 
