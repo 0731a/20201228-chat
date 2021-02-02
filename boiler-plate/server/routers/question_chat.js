@@ -38,6 +38,21 @@ router.post('/writeAnswer', function(req,res,next){
 });
 
 
+router.post('/writeQuestion', function(req,res,next){
+    let body = req.body;
+    let text = body.text;
+
+    console.log(text);
+
+    let result = models.question_chat_list.create({
+        used: false,
+        text: text
+      })    
+      res.redirect("/getAnswers");
+
+});
+
+
 router.post('/getAnswers', function(req,res,next){
     console.log("getMessage");
 
