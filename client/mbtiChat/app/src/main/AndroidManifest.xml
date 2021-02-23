@@ -22,6 +22,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".Activity.MainActivityForMVVM" />
+
         <activity android:name=".Activity.RegisterActivity">
         </activity>
 
