@@ -16,8 +16,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mbtichat.Adapter.BoardListAdapter;
 import com.example.mbtichat.R;
-import com.example.mbtichat.Service.PublicChatService;
-import com.example.mbtichat.Util.Config;
+import com.example.mbtichat.util.Config;
 
 import org.json.JSONObject;
 

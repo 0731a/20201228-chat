@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +18,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mbtichat.R;
 import com.example.mbtichat.Service.UserService;
-import com.example.mbtichat.Util.Config;
+import com.example.mbtichat.util.Config;
 
 import org.json.JSONException;
 import org.json.JSONObject;

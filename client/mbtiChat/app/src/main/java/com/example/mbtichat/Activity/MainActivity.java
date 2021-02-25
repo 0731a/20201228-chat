@@ -21,7 +21,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.mbtichat.Model.UserModel;
 import com.example.mbtichat.R;
 import com.example.mbtichat.Service.UserService;
-import com.example.mbtichat.Util.Config;
+import com.example.mbtichat.util.Config;
 
 import org.json.JSONException;
 import org.json.JSONObject;

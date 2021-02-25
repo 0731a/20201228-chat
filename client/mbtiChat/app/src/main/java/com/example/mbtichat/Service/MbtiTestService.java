@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.example.mbtichat.R;
 import com.example.mbtichat.Model.MbtiQuestionModel;
-import com.example.mbtichat.Util.ReadTxt;
+import com.example.mbtichat.util.ReadTxt;
 
 import java.io.BufferedReader;
 import java.io.IOException;

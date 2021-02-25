@@ -19,7 +19,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.mbtichat.Adapter.MbtiTestAdapter;
 import com.example.mbtichat.R;
 import com.example.mbtichat.Service.MbtiTestService;
-import com.example.mbtichat.Util.Config;
+import com.example.mbtichat.util.Config;
 
 import org.json.JSONException;
 import org.json.JSONObject;

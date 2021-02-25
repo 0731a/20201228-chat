@@ -1,6 +1,5 @@
 package com.example.mbtichat.Activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,7 +22,7 @@ import com.example.mbtichat.Model.UserModel;
 import com.example.mbtichat.R;
 import com.example.mbtichat.Service.PublicChatService;
 import com.example.mbtichat.Service.UserService;
-import com.example.mbtichat.Util.Config;
+import com.example.mbtichat.util.Config;
 
 import org.json.JSONObject;
 

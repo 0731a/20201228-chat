@@ -1,6 +1,5 @@
 package com.example.mbtichat.Activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,10 +16,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.mbtichat.Model.UserModel;
 import com.example.mbtichat.R;
 import com.example.mbtichat.Service.UserService;
-import com.example.mbtichat.Util.Config;
+import com.example.mbtichat.util.Config;
 
 import org.json.JSONException;
 import org.json.JSONObject;
