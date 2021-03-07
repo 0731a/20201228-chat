@@ -4,12 +4,17 @@ import androidx.annotation.NonNull;
 
 import com.example.mbtichat.data.entity.Post;
 
+import java.util.EventListener;
+
 public class PostItem {
     @NonNull
     private final Post post;
+    @NonNull
+    private final EventListener eventListener;
 
-    public PostItem(@NonNull Post post){
+    public PostItem(@NonNull Post post, EventListener eventListener){
         this.post = post;
+        this.eventListener = eventListener;
     }
 
     @NonNull
@@ -19,5 +24,14 @@ public class PostItem {
 
     public String getTitle() {
         return post.getTitle();
+    }
+
+    @NonNull
+    public EventListener getEventListener(){
+        return eventListener;
+    }
+
+    public interface EventListener{
+        void onPostClick(PostItem postItem);
     }
 }
