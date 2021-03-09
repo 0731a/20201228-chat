@@ -50,7 +50,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/name"
             tools:text="est natus enim nihil est colore \nomnis slkmdlk lskmlkmlklkkmlk\n lskdlknalkdn lsjndjn nskjdnksjn slkmdlksmd " />
-        
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
