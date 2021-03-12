@@ -10,6 +10,8 @@ import com.example.mbtichat.databinding.ActivityHomeBinding;
 import com.example.mbtichat.di.ActivityContext;
 import com.example.mbtichat.di.ActivityScope;
 import com.example.mbtichat.di.FragmentScope;
+import com.example.mbtichat.ui.detail.PostDetailFragment;
+import com.example.mbtichat.ui.detail.PostDetailModule;
 import com.example.mbtichat.ui.post.PostFragment;
 import com.example.mbtichat.ui.post.PostModule;
 
@@ -39,4 +41,9 @@ public abstract class MainModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = PostModule.class)
     abstract PostFragment getPostFragment();
+
+    // PostDetailFragment에 멤버 인젝션을 위한 서브 컴포넌트 정의
+    @FragmentScope
+    @ContributesAndroidInjector(modules = PostDetailModule.class)
+    abstract PostDetailFragment getPostDetailFragment();
 }
