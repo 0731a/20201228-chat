@@ -3,6 +3,7 @@ package com.example.mbtichat.di;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.mbtichat.ui.detail.PostDetailViewModel;
 import com.example.mbtichat.ui.post.PostViewModel;
 
 import dagger.Binds;
@@ -19,4 +20,9 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(PostViewModel.class)
     abstract ViewModel bindPostViewModel(PostViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PostDetailViewModel.class)
+    abstract ViewModel bindsPostDEtailViewModel(PostDetailViewModel viewModel);
 }
