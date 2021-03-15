@@ -14,6 +14,8 @@ import com.example.mbtichat.ui.detail.PostDetailFragment;
 import com.example.mbtichat.ui.detail.PostDetailModule;
 import com.example.mbtichat.ui.post.PostFragment;
 import com.example.mbtichat.ui.post.PostModule;
+import com.example.mbtichat.ui.user.UserFragment;
+import com.example.mbtichat.ui.user.UserModule;
 
 import dagger.Module;
 import dagger.Provides;
@@ -46,4 +48,8 @@ public abstract class MainModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = PostDetailModule.class)
     abstract PostDetailFragment getPostDetailFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = UserModule.class)
+    abstract UserFragment getUserFragment();
 }
