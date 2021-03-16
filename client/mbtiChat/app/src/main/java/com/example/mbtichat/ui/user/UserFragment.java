@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.mbtichat.databinding.FragmentUserBinding;
 import com.example.mbtichat.di.AppViewModelFactory;
 
 import javax.inject.Inject;
