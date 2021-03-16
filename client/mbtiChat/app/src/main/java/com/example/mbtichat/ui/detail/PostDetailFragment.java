@@ -59,8 +59,10 @@ public class PostDetailFragment extends DaggerFragment {
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.setViewModel(viewModel);
-        viewModel.getLiveItems.observe(getViewLifecycleOwner(), items -> adapter.setItems(items));
-        viewModel.getUserClickEvent().observe(getViewLifecycleOwner(), userId->{navController.get().navigate(...);
+        viewModel.getLiveItmes().observe(getViewLifecycleOwner(), items -> adapter.setItems(items));
+        viewModel.getUserClickEvent().observe(getViewLifecycleOwner(),
+                userId -> {
+                    navController.get().navigate(PostDetailFragmentDirections.actionPostDetailFragmentToUserFragment(userId));
         });
     }
 
