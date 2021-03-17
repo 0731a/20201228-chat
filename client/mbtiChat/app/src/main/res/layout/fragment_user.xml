@@ -25,6 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
+
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
@@ -34,8 +35,8 @@
             android:textSize="40dp"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_cosntraintStart_toStartOf="parent"
-            app:laout_constraintTop_toBottomOf="@id/user_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_icon"
             tools:text="brent" />
 
         <TextView
@@ -47,8 +48,8 @@
             android:text="@{viewModel.email}"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_cosntraintStart_toStartOf="parent"
-            app:laout_constraintTop_toBottomOf="@id/name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name"
             tools:text="brent@naver.com" />
 
         <TextView
@@ -60,8 +61,8 @@
         android:text="@{viewModel.homepage}"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_cosntraintStart_toStartOf="parent"
-        app:laout_constraintTop_toBottomOf="@id/email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/email"
         tools:text="www.bread.com" />
 
         <TextView
@@ -73,8 +74,8 @@
             android:text="@{viewModel.phone}"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_cosntraintStart_toStartOf="parent"
-            app:laout_constraintTop_toBottomOf="@id/homepage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/homepage"
             tools:text="010-1234-5678" />
 
 
@@ -87,8 +88,8 @@
             android:text="@{viewModel.location}"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_cosntraintStart_toStartOf="parent"
-            app:laout_constraintTop_toBottomOf="@id/phone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/phone"
             tools:text="Korea" />
 
         <ProgressBar
@@ -98,8 +99,8 @@
             android:visibility="@{viewModel.loading? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_cosntraintStart_toStartOf="parent"
-            app:laout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
