@@ -13,8 +13,10 @@ import com.example.mbtichat.databinding.FragmentPostDetailBinding;
 import com.example.mbtichat.di.ApplicationContext;
 import com.example.mbtichat.di.FragmentScope;
 
+import dagger.Module;
 import dagger.Provides;
 
+@Module
 public class PostDetailModule {
     // View를 표현하는 바인딩 클래스
     @Provides
