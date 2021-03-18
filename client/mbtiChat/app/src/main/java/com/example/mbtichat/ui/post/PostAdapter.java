@@ -3,9 +3,9 @@ package com.example.mbtichat.ui.post;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.library.baseAdapters.BR;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mbtichat.BR;
 import com.example.mbtichat.R;
 import com.example.mbtichat.util.ViewBindingHolder;
 
