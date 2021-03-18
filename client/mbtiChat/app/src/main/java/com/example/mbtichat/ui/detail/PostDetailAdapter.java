@@ -3,8 +3,10 @@ package com.example.mbtichat.ui.detail;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.library.baseAdapters.BR;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mbtichat.R;
 import com.example.mbtichat.util.ViewBindingHolder;
 
 import java.util.ArrayList;
