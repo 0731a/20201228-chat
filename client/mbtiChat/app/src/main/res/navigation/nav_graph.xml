@@ -14,7 +14,7 @@
     <!-- PostFragment에서 PostDetailFragment로 이동 -->
     <!-- 화면 전환시 사용할 애니메이션도 적용한다. -->
         <action
-            android:id="@+id/action_post_fragment_to_post_detailFragemnt"
+            android:id="@+id/action_post_fragment_to_post_detailFragment"
             app:destination="@id/post_detail_fragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
@@ -30,12 +30,12 @@
             app:argType="com.example.mbtichat.data.entity.Post" />
         <action
             android:id="@+id/action_post_detail_fragment_to_userFragment"
-            app:destination="@id/userFragment"
+            app:destination="@id/user_fragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
-        android:id="@+id/userFragment"
+        android:id="@+id/user_fragment"
         android:name="com.example.mbtichat.ui.user.UserFragment"
         android:label="UserFragment">
         <argument
