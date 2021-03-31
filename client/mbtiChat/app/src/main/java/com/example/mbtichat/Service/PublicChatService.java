@@ -1,8 +1,7 @@
 package com.example.mbtichat.Service;
 
 import com.example.mbtichat.Adapter.PublicChatAdapter;
-import com.example.mbtichat.Model.MbtiQuestionModel;
-import com.example.mbtichat.Model.PublicChatModel;
+import com.example.mbtichat.data.entity.PublicChatModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;

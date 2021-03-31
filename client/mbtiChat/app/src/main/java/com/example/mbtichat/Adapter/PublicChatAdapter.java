@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.mbtichat.Model.PublicChatModel;
+import com.example.mbtichat.data.entity.PublicChatModel;
 import com.example.mbtichat.R;
 
 import java.util.ArrayList;

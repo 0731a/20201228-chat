@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.mbtichat.Model.BoardPostModel;
+import com.example.mbtichat.data.entity.BoardPostModel;
 import com.example.mbtichat.R;
 
 import org.json.JSONArray;

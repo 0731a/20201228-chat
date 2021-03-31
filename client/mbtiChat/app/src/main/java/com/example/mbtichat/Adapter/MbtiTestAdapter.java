@@ -10,7 +10,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.example.mbtichat.Model.MbtiQuestionModel;
+import com.example.mbtichat.data.entity.MbtiQuestionModel;
 import com.example.mbtichat.R;
 import com.example.mbtichat.Service.MbtiTestService;
 

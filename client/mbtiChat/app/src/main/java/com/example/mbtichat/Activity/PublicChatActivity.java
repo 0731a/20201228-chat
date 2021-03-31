@@ -18,7 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mbtichat.Adapter.PublicChatAdapter;
-import com.example.mbtichat.Model.UserModel;
+import com.example.mbtichat.data.entity.UserModel;
 import com.example.mbtichat.R;
 import com.example.mbtichat.Service.PublicChatService;
 import com.example.mbtichat.Service.UserService;

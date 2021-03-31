@@ -8,11 +8,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.mbtichat.ListItem;
-import com.example.mbtichat.Model.BoardModel;
-import com.example.mbtichat.Model.PublicChatModel;
+import com.example.mbtichat.data.entity.BoardModel;
 import com.example.mbtichat.R;
-import com.example.mbtichat.Service.UserService;
 
 import org.json.JSONArray;
 import org.json.JSONException;

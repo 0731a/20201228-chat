@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.mbtichat.R;
-import com.example.mbtichat.Model.MbtiQuestionModel;
+import com.example.mbtichat.data.entity.MbtiQuestionModel;
 import com.example.mbtichat.util.ReadTxt;
 
 import java.io.BufferedReader;
