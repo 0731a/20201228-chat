@@ -25,7 +25,7 @@ public class User2 {
     public String getId() {
         return id;
     }
-    
+
     public String getMbti(){
         return mbti;
     }
