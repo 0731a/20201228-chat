@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 
 import com.example.mbtichat.data.entity.Post;
 
-import java.util.EventListener;
-
 public class PostItem {
     @NonNull
     private final Post post;
